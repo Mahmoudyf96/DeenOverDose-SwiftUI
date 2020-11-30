@@ -1,0 +1,20 @@
+# ignore a single file
+# mycode.class
+app.js
+package-lock.json
+package.json
+validation.js
+
+# ignore an entire directory
+# /mydebugdir/
+/models/
+/node_modules/
+/routes/
+
+# ignore a file type
+# *.json
+*.vscode
+*.env
+
+# add an exception (using !) to the preceding rule to track a specific file
+# !package.json
