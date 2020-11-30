@@ -1,0 +1,382 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C2392B8B2560F03D00A93493 /* DeenOverDoseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2392B8A2560F03D00A93493 /* DeenOverDoseApp.swift */; };
+		C2392B8D2560F03D00A93493 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2392B8C2560F03D00A93493 /* ContentView.swift */; };
+		C2392B8F2560F04000A93493 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2392B8E2560F04000A93493 /* Assets.xcassets */; };
+		C2392B922560F04000A93493 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2392B912560F04000A93493 /* Preview Assets.xcassets */; };
+		C2392B942560F04000A93493 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2392B932560F04000A93493 /* Persistence.swift */; };
+		C2392B972560F04000A93493 /* DeenOverDose.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C2392B952560F04000A93493 /* DeenOverDose.xcdatamodeld */; };
+		C2392BA02560F07B00A93493 /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2392B9F2560F07B00A93493 /* Bundle-Decodable.swift */; };
+		C2392BA32560F0AB00A93493 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2392BA22560F0AB00A93493 /* QuizView.swift */; };
+		C2392BA62560F0B700A93493 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2392BA52560F0B700A93493 /* Question.swift */; };
+		C2392BA92560F0C200A93493 /* deenodquestions.json in Resources */ = {isa = PBXBuildFile; fileRef = C2392BA82560F0C200A93493 /* deenodquestions.json */; };
+		C24565C92560FCDD00B0CCFF /* StoredQuestion+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24565C72560FCDD00B0CCFF /* StoredQuestion+CoreDataClass.swift */; };
+		C24565CA2560FCDD00B0CCFF /* StoredQuestion+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24565C82560FCDD00B0CCFF /* StoredQuestion+CoreDataProperties.swift */; };
+		C27353E22567466F00B7CB45 /* TrialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27353E12567466F00B7CB45 /* TrialsView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C2392B872560F03D00A93493 /* DeenOverDose.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeenOverDose.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2392B8A2560F03D00A93493 /* DeenOverDoseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeenOverDoseApp.swift; sourceTree = "<group>"; };
+		C2392B8C2560F03D00A93493 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C2392B8E2560F04000A93493 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C2392B912560F04000A93493 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C2392B932560F04000A93493 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		C2392B962560F04000A93493 /* DeenOverDose.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DeenOverDose.xcdatamodel; sourceTree = "<group>"; };
+		C2392B982560F04000A93493 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C2392B9F2560F07B00A93493 /* Bundle-Decodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable.swift"; sourceTree = "<group>"; };
+		C2392BA22560F0AB00A93493 /* QuizView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
+		C2392BA52560F0B700A93493 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		C2392BA82560F0C200A93493 /* deenodquestions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deenodquestions.json; sourceTree = "<group>"; };
+		C24565C72560FCDD00B0CCFF /* StoredQuestion+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoredQuestion+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C24565C82560FCDD00B0CCFF /* StoredQuestion+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoredQuestion+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C27353E12567466F00B7CB45 /* TrialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrialsView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C2392B842560F03D00A93493 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C2392B7E2560F03D00A93493 = {
+			isa = PBXGroup;
+			children = (
+				C2392B892560F03D00A93493 /* DeenOverDose */,
+				C2392B882560F03D00A93493 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C2392B882560F03D00A93493 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C2392B872560F03D00A93493 /* DeenOverDose.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C2392B892560F03D00A93493 /* DeenOverDose */ = {
+			isa = PBXGroup;
+			children = (
+				C24565C72560FCDD00B0CCFF /* StoredQuestion+CoreDataClass.swift */,
+				C24565C82560FCDD00B0CCFF /* StoredQuestion+CoreDataProperties.swift */,
+				C2392B8A2560F03D00A93493 /* DeenOverDoseApp.swift */,
+				C2392BA22560F0AB00A93493 /* QuizView.swift */,
+				C27353E12567466F00B7CB45 /* TrialsView.swift */,
+				C2392B8C2560F03D00A93493 /* ContentView.swift */,
+				C2392BA52560F0B700A93493 /* Question.swift */,
+				C2392B8E2560F04000A93493 /* Assets.xcassets */,
+				C2392B932560F04000A93493 /* Persistence.swift */,
+				C2392B982560F04000A93493 /* Info.plist */,
+				C2392B9F2560F07B00A93493 /* Bundle-Decodable.swift */,
+				C2392B952560F04000A93493 /* DeenOverDose.xcdatamodeld */,
+				C2392BA82560F0C200A93493 /* deenodquestions.json */,
+				C2392B902560F04000A93493 /* Preview Content */,
+			);
+			path = DeenOverDose;
+			sourceTree = "<group>";
+		};
+		C2392B902560F04000A93493 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				C2392B912560F04000A93493 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C2392B862560F03D00A93493 /* DeenOverDose */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C2392B9B2560F04000A93493 /* Build configuration list for PBXNativeTarget "DeenOverDose" */;
+			buildPhases = (
+				C2392B832560F03D00A93493 /* Sources */,
+				C2392B842560F03D00A93493 /* Frameworks */,
+				C2392B852560F03D00A93493 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DeenOverDose;
+			productName = DeenOverDose;
+			productReference = C2392B872560F03D00A93493 /* DeenOverDose.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C2392B7F2560F03D00A93493 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1210;
+				LastUpgradeCheck = 1210;
+				TargetAttributes = {
+					C2392B862560F03D00A93493 = {
+						CreatedOnToolsVersion = 12.1;
+					};
+				};
+			};
+			buildConfigurationList = C2392B822560F03D00A93493 /* Build configuration list for PBXProject "DeenOverDose" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C2392B7E2560F03D00A93493;
+			productRefGroup = C2392B882560F03D00A93493 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C2392B862560F03D00A93493 /* DeenOverDose */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C2392B852560F03D00A93493 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2392BA92560F0C200A93493 /* deenodquestions.json in Resources */,
+				C2392B922560F04000A93493 /* Preview Assets.xcassets in Resources */,
+				C2392B8F2560F04000A93493 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C2392B832560F03D00A93493 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2392B972560F04000A93493 /* DeenOverDose.xcdatamodeld in Sources */,
+				C27353E22567466F00B7CB45 /* TrialsView.swift in Sources */,
+				C2392B942560F04000A93493 /* Persistence.swift in Sources */,
+				C24565CA2560FCDD00B0CCFF /* StoredQuestion+CoreDataProperties.swift in Sources */,
+				C24565C92560FCDD00B0CCFF /* StoredQuestion+CoreDataClass.swift in Sources */,
+				C2392BA02560F07B00A93493 /* Bundle-Decodable.swift in Sources */,
+				C2392B8D2560F03D00A93493 /* ContentView.swift in Sources */,
+				C2392B8B2560F03D00A93493 /* DeenOverDoseApp.swift in Sources */,
+				C2392BA62560F0B700A93493 /* Question.swift in Sources */,
+				C2392BA32560F0AB00A93493 /* QuizView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C2392B992560F04000A93493 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C2392B9A2560F04000A93493 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C2392B9C2560F04000A93493 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"DeenOverDose/Preview Content\"";
+				DEVELOPMENT_TEAM = 4LVL647LQT;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = DeenOverDose/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.deenod.DeenOverDose;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C2392B9D2560F04000A93493 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"DeenOverDose/Preview Content\"";
+				DEVELOPMENT_TEAM = 4LVL647LQT;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = DeenOverDose/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.deenod.DeenOverDose;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C2392B822560F03D00A93493 /* Build configuration list for PBXProject "DeenOverDose" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2392B992560F04000A93493 /* Debug */,
+				C2392B9A2560F04000A93493 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C2392B9B2560F04000A93493 /* Build configuration list for PBXNativeTarget "DeenOverDose" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C2392B9C2560F04000A93493 /* Debug */,
+				C2392B9D2560F04000A93493 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C2392B952560F04000A93493 /* DeenOverDose.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C2392B962560F04000A93493 /* DeenOverDose.xcdatamodel */,
+			);
+			currentVersion = C2392B962560F04000A93493 /* DeenOverDose.xcdatamodel */;
+			path = DeenOverDose.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = C2392B7F2560F03D00A93493 /* Project object */;
+}
