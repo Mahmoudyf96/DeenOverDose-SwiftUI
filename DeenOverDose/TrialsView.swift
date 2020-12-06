@@ -13,14 +13,16 @@ struct TrialsView: View {
     
     var body: some View {
         VStack {
-            Text("Your Best Score is: \(score)")
             NavigationLink(destination: QuizView()) {
                 Text("Trials")
             }
             .padding()
+            Text("Your Best Score is: \(score)")
         }
         .frame(width: 400, height: 400)
         .navigationBarTitle("")
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
     }
 }
 

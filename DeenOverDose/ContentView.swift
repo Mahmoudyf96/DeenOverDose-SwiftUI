@@ -28,7 +28,9 @@ struct ContentView: View {
                 .padding()
             }
             .frame(width: 400, height: 400)
-            .navigationBarTitle("Deen OD", displayMode: .inline)
+            .navigationBarTitle("")
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
         }
     }
 }
