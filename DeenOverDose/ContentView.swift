@@ -6,28 +6,89 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
 
     var body: some View {
         NavigationView {
-            ScrollView(.vertical) {
-                NavigationLink(destination: Text("Detailed View")) {
-                    Text("Story")
+            GeometryReader { geo in
+                ZStack {
+                    Image("backgroundImage")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                    VStack (alignment: .center) {
+                        Spacer()
+                        Image("DeenOD - HomeLogo")
+                            .padding(.bottom, 50)
+                        ZStack {
+                            Image("backgroundProfile")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: geo.size.width - 75)
+                            HStack {
+                                Image("Al Fihri")
+                                    .offset(x: 10)
+                                VStack (alignment: .leading) {
+                                    Image("UI1")
+                                        .offset(x: 10)
+                                    Image("UI-1")
+                                        .offset(x: 10, y: -5)
+                                    ZStack {
+                                        Image("Rectangle 112")
+                                        Image("Group 329")
+                                            .offset(x: -45)
+                                        Image("UI-2")
+                                            .offset(x: 10)
+                                    }
+                                    .frame(width: 141, height: 50)
+                                    .offset(x: 5)
+                                }
+                                .offset(x: 2)
+                                Image("PrestigeThree")
+                            }
+                        }
+                        .padding(.vertical, 30)
+                        VStack {
+                            ZStack {
+                                Image("homeButton")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geo.size.width - 40)
+                                Image("startingJourney")
+                            }
+                            ZStack {
+                                Image("homeButton")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geo.size.width - 40)
+                                Image("heroesTitle")
+                            }
+                            .padding(.top, 10)
+                            ZStack {
+                                Image("homeButton")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geo.size.width - 40)
+                                Image("statsTitle")
+                                
+                            }
+                            .padding(.top, 10)
+                            ZStack {
+                                Image("homeButton")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: geo.size.width - 40)
+                                Image("settingsTitle")
+                            }
+                            .padding(.top, 10)
+                        }
+                        Spacer()
+                    }
+                    .offset(y: -10)
                 }
-                .padding()
-                NavigationLink(destination: Text("Detailed View")) {
-                    Text("Arena")
-                }
-                .padding()
-                NavigationLink(destination: TrialsView()) {
-                    Text("Trials")
-                }
-                .padding()
+                .edgesIgnoringSafeArea(.all)
+                .frame(width: geo.size.width, height: geo.size.height)
             }
-            .frame(width: 400, height: 400)
             .navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)

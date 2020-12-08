@@ -7,37 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C237439E257EEB3C001C5244 /* Bungee-Inline.otf in Resources */ = {isa = PBXBuildFile; fileRef = C237439D257EEB3C001C5244 /* Bungee-Inline.otf */; };
+		C23743A1257EEB49001C5244 /* Bungee-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C23743A0257EEB49001C5244 /* Bungee-Regular.otf */; };
+		C23743A4257EEC59001C5244 /* PressStart2P-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C23743A3257EEC59001C5244 /* PressStart2P-Regular.ttf */; };
 		C2392B8B2560F03D00A93493 /* DeenOverDoseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2392B8A2560F03D00A93493 /* DeenOverDoseApp.swift */; };
 		C2392B8D2560F03D00A93493 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2392B8C2560F03D00A93493 /* ContentView.swift */; };
 		C2392B8F2560F04000A93493 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2392B8E2560F04000A93493 /* Assets.xcassets */; };
 		C2392B922560F04000A93493 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C2392B912560F04000A93493 /* Preview Assets.xcassets */; };
 		C2392B942560F04000A93493 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2392B932560F04000A93493 /* Persistence.swift */; };
-		C2392B972560F04000A93493 /* DeenOverDose.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C2392B952560F04000A93493 /* DeenOverDose.xcdatamodeld */; };
 		C2392BA02560F07B00A93493 /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2392B9F2560F07B00A93493 /* Bundle-Decodable.swift */; };
 		C2392BA32560F0AB00A93493 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2392BA22560F0AB00A93493 /* QuizView.swift */; };
 		C2392BA62560F0B700A93493 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2392BA52560F0B700A93493 /* Question.swift */; };
 		C2392BA92560F0C200A93493 /* deenodquestions.json in Resources */ = {isa = PBXBuildFile; fileRef = C2392BA82560F0C200A93493 /* deenodquestions.json */; };
-		C24565C92560FCDD00B0CCFF /* StoredQuestion+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24565C72560FCDD00B0CCFF /* StoredQuestion+CoreDataClass.swift */; };
-		C24565CA2560FCDD00B0CCFF /* StoredQuestion+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C24565C82560FCDD00B0CCFF /* StoredQuestion+CoreDataProperties.swift */; };
-		C27353E22567466F00B7CB45 /* TrialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27353E12567466F00B7CB45 /* TrialsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C237439D257EEB3C001C5244 /* Bungee-Inline.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bungee-Inline.otf"; sourceTree = "<group>"; };
+		C23743A0257EEB49001C5244 /* Bungee-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bungee-Regular.otf"; sourceTree = "<group>"; };
+		C23743A3257EEC59001C5244 /* PressStart2P-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PressStart2P-Regular.ttf"; sourceTree = "<group>"; };
 		C2392B872560F03D00A93493 /* DeenOverDose.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeenOverDose.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2392B8A2560F03D00A93493 /* DeenOverDoseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeenOverDoseApp.swift; sourceTree = "<group>"; };
 		C2392B8C2560F03D00A93493 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C2392B8E2560F04000A93493 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C2392B912560F04000A93493 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C2392B932560F04000A93493 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		C2392B962560F04000A93493 /* DeenOverDose.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DeenOverDose.xcdatamodel; sourceTree = "<group>"; };
 		C2392B982560F04000A93493 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2392B9F2560F07B00A93493 /* Bundle-Decodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable.swift"; sourceTree = "<group>"; };
 		C2392BA22560F0AB00A93493 /* QuizView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 		C2392BA52560F0B700A93493 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		C2392BA82560F0C200A93493 /* deenodquestions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deenodquestions.json; sourceTree = "<group>"; };
-		C24565C72560FCDD00B0CCFF /* StoredQuestion+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoredQuestion+CoreDataClass.swift"; sourceTree = "<group>"; };
-		C24565C82560FCDD00B0CCFF /* StoredQuestion+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoredQuestion+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		C27353E12567466F00B7CB45 /* TrialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrialsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +49,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C237439C257EEAFF001C5244 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				C23743A0257EEB49001C5244 /* Bungee-Regular.otf */,
+				C237439D257EEB3C001C5244 /* Bungee-Inline.otf */,
+				C23743A3257EEC59001C5244 /* PressStart2P-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		C2392B7E2560F03D00A93493 = {
 			isa = PBXGroup;
 			children = (
@@ -70,10 +78,7 @@
 		C2392B892560F03D00A93493 /* DeenOverDose */ = {
 			isa = PBXGroup;
 			children = (
-				C24565C72560FCDD00B0CCFF /* StoredQuestion+CoreDataClass.swift */,
-				C24565C82560FCDD00B0CCFF /* StoredQuestion+CoreDataProperties.swift */,
 				C2392B8A2560F03D00A93493 /* DeenOverDoseApp.swift */,
-				C27353E12567466F00B7CB45 /* TrialsView.swift */,
 				C2392BA22560F0AB00A93493 /* QuizView.swift */,
 				C2392B8C2560F03D00A93493 /* ContentView.swift */,
 				C2392BA52560F0B700A93493 /* Question.swift */,
@@ -81,8 +86,8 @@
 				C2392B932560F04000A93493 /* Persistence.swift */,
 				C2392B982560F04000A93493 /* Info.plist */,
 				C2392B9F2560F07B00A93493 /* Bundle-Decodable.swift */,
-				C2392B952560F04000A93493 /* DeenOverDose.xcdatamodeld */,
 				C2392BA82560F0C200A93493 /* deenodquestions.json */,
+				C237439C257EEAFF001C5244 /* Fonts */,
 				C2392B902560F04000A93493 /* Preview Content */,
 			);
 			path = DeenOverDose;
@@ -153,8 +158,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C23743A4257EEC59001C5244 /* PressStart2P-Regular.ttf in Resources */,
 				C2392BA92560F0C200A93493 /* deenodquestions.json in Resources */,
 				C2392B922560F04000A93493 /* Preview Assets.xcassets in Resources */,
+				C237439E257EEB3C001C5244 /* Bungee-Inline.otf in Resources */,
+				C23743A1257EEB49001C5244 /* Bungee-Regular.otf in Resources */,
 				C2392B8F2560F04000A93493 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -166,11 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2392B972560F04000A93493 /* DeenOverDose.xcdatamodeld in Sources */,
-				C27353E22567466F00B7CB45 /* TrialsView.swift in Sources */,
 				C2392B942560F04000A93493 /* Persistence.swift in Sources */,
-				C24565CA2560FCDD00B0CCFF /* StoredQuestion+CoreDataProperties.swift in Sources */,
-				C24565C92560FCDD00B0CCFF /* StoredQuestion+CoreDataClass.swift in Sources */,
 				C2392BA02560F07B00A93493 /* Bundle-Decodable.swift in Sources */,
 				C2392B8D2560F03D00A93493 /* ContentView.swift in Sources */,
 				C2392B8B2560F03D00A93493 /* DeenOverDoseApp.swift in Sources */,
@@ -364,19 +368,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		C2392B952560F04000A93493 /* DeenOverDose.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				C2392B962560F04000A93493 /* DeenOverDose.xcdatamodel */,
-			);
-			currentVersion = C2392B962560F04000A93493 /* DeenOverDose.xcdatamodel */;
-			path = DeenOverDose.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = C2392B7F2560F03D00A93493 /* Project object */;
 }

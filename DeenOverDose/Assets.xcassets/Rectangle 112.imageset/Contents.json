@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "DeenOD (Arabic Edition) - Gold on Black Background.png",
+      "filename" : "Rectangle 112.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Rectangle 112@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "Rectangle 112@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
