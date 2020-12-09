@@ -37,18 +37,18 @@ struct QuizView: View {
                         Color(red: 0, green: 0.224, blue: /*0.32*/ 0.111) //00391C
                     ]), startPoint: .top, endPoint: .bottom)
                     VStack {
-                        Spacer()
-                            .frame(height: 100)
                         HStack {
+                            Spacer()
+                                .frame(width: geo.size.width / 2.8)
                             HStack {
                                 Text(":")
-                                    .kerning(-20)
-                                    .font(.custom("PressStart2P-Regular", size: 40.0))
+                                    .kerning(-geo.size.height / 55.0)
+                                    .font(.custom("PressStart2P-Regular", size: geo.size.height / 28.0))
                                     .foregroundColor(.white)
                                     .multilineTextAlignment(.center)
                                 Text("\(timeRemaining)")
                                     .kerning(-1)
-                                    .font(.custom("PressStart2P-Regular", size: 40.0))
+                                    .font(.custom("PressStart2P-Regular", size: geo.size.height / 28.0))
                                     .foregroundColor(.white)
                                     .multilineTextAlignment(.center)
                                     .onReceive(timer) { _ in
@@ -59,21 +59,26 @@ struct QuizView: View {
                                         }
                                     }
                             }
-                            .frame(width: 100, height: 100)
-                            .padding(.horizontal, 40)
+                            .frame(width: geo.size.width / 4.0)
+                            Spacer()
+                                .frame(width: geo.size.width / 4.8)
                             Image("exitButton")
-                                .padding(.horizontal, 40)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: geo.size.width / 14.0)
+                            Spacer()
+                                .frame(width: geo.size.width / 10.0)
                         }
-                        .offset(x: 60)
+                        .padding(.top, geo.size.height / 10)
                         Spacer()
-                            .frame(height: 100)
+                            .frame(height: geo.size.height / 30)
                         Text("During which Caliph’s reign did the Muslims conquer Jerusalem?")
-                            .font(.custom("Bungee-Regular", size: 20.0))
+                            .font(.custom("Bungee-Regular", size: geo.size.height / 35.0))
                             .multilineTextAlignment(.center)
                             .foregroundColor(.white)
-                            .padding(.horizontal, 30)
+                            .frame(width: geo.size.width / 1.2, height: geo.size.height / 3)
                         Spacer()
-                            .frame(height: 100)
+                            .frame(height: geo.size.height / 30)
                         VStack {
                             Button(action: {
                                 answer1.toggle()
@@ -82,16 +87,16 @@ struct QuizView: View {
                                     Image(answer1 ? "correctQuizButton" : "quizButton")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
-                                        .frame(width: geo.size.width - 65)
+                                        .frame(width: geo.size.width / 1.3)
                                     Text("‘Umar")
-                                        .font(.custom("PressStart2P-Regular", size: 16.0))
+                                        .font(.custom("PressStart2P-Regular", size: geo.size.height / 40.0))
                                         .foregroundColor(.quizAnswersColour)
                                         .multilineTextAlignment(.center)
-                                        .offset(x: 30)
+                                        .offset(x: geo.size.width / 15.0)
                                 }
                             }
                             .buttonStyle(PlainButtonStyle())
-                            .padding(.bottom, 20)
+                            .padding(.bottom, 10.0)
                             Button(action: {
                                 answer2.toggle()
                             }) {
@@ -99,16 +104,16 @@ struct QuizView: View {
                                     Image(answer2 ? "wrongQuizButton" : "quizButton")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
-                                        .frame(width: geo.size.width - 65)
+                                        .frame(width: geo.size.width / 1.3)
                                     Text("‘Ali")
-                                        .font(.custom("PressStart2P-Regular", size: 16.0))
+                                        .font(.custom("PressStart2P-Regular", size: geo.size.height / 40.0))
                                         .foregroundColor(.quizAnswersColour)
                                         .multilineTextAlignment(.center)
-                                        .offset(x: 30)
+                                        .offset(x: geo.size.width / 15.0)
                                 }
                             }
                             .buttonStyle(PlainButtonStyle())
-                            .padding(.bottom, 20)
+                            .padding(.bottom, 10.0)
                             Button(action: {
                                 answer3.toggle()
                             }) {
@@ -116,12 +121,12 @@ struct QuizView: View {
                                     Image(answer3 ? "wrongQuizButton" : "quizButton")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
-                                        .frame(width: geo.size.width - 65)
+                                        .frame(width: geo.size.width / 1.3)
                                     Text("‘Uthman")
-                                        .font(.custom("PressStart2P-Regular", size: 16.0))
+                                        .font(.custom("PressStart2P-Regular", size: geo.size.height / 40.0))
                                         .foregroundColor(.quizAnswersColour)
                                         .multilineTextAlignment(.center)
-                                        .offset(x: 30)
+                                        .offset(x: geo.size.width / 15.0)
                                 }
                             }
                             .buttonStyle(PlainButtonStyle())
@@ -136,6 +141,7 @@ struct QuizView: View {
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
