@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "backgroundProfile.png",
+      "filename" : "homeStatButton.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "backgroundProfile@2x.png",
+      "filename" : "homeStatButton@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "backgroundProfile@3x.png",
+      "filename" : "homeStatButton@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

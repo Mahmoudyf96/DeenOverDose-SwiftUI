@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "PrestigeThree - ThreeQuart.png",
+      "filename" : "Trophy.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "PrestigeThree - ThreeQuart@2x.png",
+      "filename" : "Trophy@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "PrestigeThree - ThreeQuart@3x.png",
+      "filename" : "Trophy@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
