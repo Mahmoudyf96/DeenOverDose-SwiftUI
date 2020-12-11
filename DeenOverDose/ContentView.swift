@@ -10,7 +10,9 @@ import SwiftUI
 struct ContentView: View {
     
     @Environment(\.horizontalSizeClass) var sizeClass
+    
     @State var isActive: Bool = false
+    @State var bestScore: Int = 0
 
     var body: some View {
         NavigationView {
@@ -81,7 +83,7 @@ struct ContentView: View {
                             }
                         }
                         VStack {
-                            NavigationLink(destination: QuizView(rootIsActive: $isActive), isActive: $isActive) {
+                            NavigationLink(destination: QuizView(rootIsActive: $isActive, bestScore: $bestScore), isActive: $isActive) {
                                 ZStack {
                                     Image("homeButton")
                                         .resizable()
