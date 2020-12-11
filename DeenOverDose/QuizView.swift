@@ -12,8 +12,84 @@ extension Color {
     static let quizAnswersColour = Color("quizTextColour")
 }
 
+struct GameOver: View {
+    
+    @Environment(\.horizontalSizeClass) var sizeClass
+    
+    @Binding var timeRemaining: Int
+    @Binding var gameOver: Bool
+    @Binding var shouldPopToRootView: Bool
+    
+    var body: some View {
+        GeometryReader { geo in
+            VStack (alignment: .center) {
+                Spacer()
+                Image("gameOver")
+                Spacer()
+                    .frame(height: geo.size.height / 12.0)
+                VStack {
+                    Text("SCORE")
+                        .font(.custom("PressStart2P-Regular", size: geo.size.height / 45.0))
+                        .foregroundColor(.white)
+                        .padding(.bottom, 10)
+                    Text("5")
+                        .font(.custom("PressStart2P-Regular", size: geo.size.height / 14.0))
+                        .foregroundColor(.white)
+                }
+                Spacer()
+                    .frame(height: geo.size.height / 16.0)
+                VStack {
+                    Text("BEST")
+                        .font(.custom("PressStart2P-Regular", size: geo.size.height / 45.0))
+                        .foregroundColor(.white)
+                        .padding(.bottom, 10)
+                    Text("34")
+                        .font(.custom("PressStart2P-Regular", size: geo.size.height / 14.0))
+                        .foregroundColor(.white)
+                }
+                Spacer()
+                    .frame(height: geo.size.height / 10.0)
+                VStack {
+                    Button(action: {
+                        timeRemaining = 12
+                        gameOver = false
+                    }) {
+                        ZStack {
+                            Image("quizButton")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: sizeClass == .compact ? geo.size.width / 1.2 : geo.size.width / 1.3)
+                            Image("playAgain")
+                        }
+                        .padding(.bottom, 20)
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    Button(action: {
+                        self.shouldPopToRootView = false
+                    }) {
+                        ZStack {
+                            Image("quizButton")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: sizeClass == .compact ? geo.size.width / 1.2 : geo.size.width / 1.3)
+                            Image("mainMenuText")
+                        }
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                }
+                Spacer()
+            }
+            .edgesIgnoringSafeArea(.all)
+            .frame(width: geo.size.width, height: geo.size.height)
+        }
+    }
+}
+
 struct QuizView: View {
-    @Environment(\.presentationMode) var presentationMode
+    
+    @Environment(\.horizontalSizeClass) var sizeClass
+    
+    @Binding var rootIsActive: Bool
     
     @State private var score = 0
     @State private var quizPosition = 0
@@ -22,6 +98,7 @@ struct QuizView: View {
     @State private var answer3 = false
     
     @State private var timesUp = false
+    @State private var gameOver = false
     
     @State var timeRemaining = 12
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -36,126 +113,134 @@ struct QuizView: View {
                         Color(red: 0, green: 0.345, blue: /*0.32*/ 0.169), //00582B
                         Color(red: 0, green: 0.224, blue: /*0.32*/ 0.111) //00391C
                     ]), startPoint: .top, endPoint: .bottom)
-                    VStack {
-                        HStack {
-                            Spacer()
-                                .frame(width: geo.size.width / 2.8)
-                            HStack {
-                                Text(":")
-                                    .kerning(-geo.size.height / 55.0)
-                                    .font(.custom("PressStart2P-Regular", size: geo.size.height / 28.0))
-                                    .foregroundColor(.white)
-                                    .multilineTextAlignment(.center)
-                                Text("\(timeRemaining)")
-                                    .kerning(-1)
-                                    .font(.custom("PressStart2P-Regular", size: geo.size.height / 28.0))
-                                    .foregroundColor(.white)
-                                    .multilineTextAlignment(.center)
-                                    .onReceive(timer) { _ in
-                                        if self.timeRemaining > 0 {
-                                            self.timeRemaining -= 1
-                                        } else {
-                                            timesUp.toggle()
-                                        }
-                                    }
-                            }
-                            .frame(width: geo.size.width / 4.0)
-                            Spacer()
-                                .frame(width: geo.size.width / 4.8)
-                            Image("exitButton")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geo.size.width / 14.0)
-                            Spacer()
-                                .frame(width: geo.size.width / 10.0)
-                        }
-                        .padding(.top, geo.size.height / 10)
-                        Spacer()
-                            .frame(height: geo.size.height / 30)
-                        Text("During which Caliph’s reign did the Muslims conquer Jerusalem?")
-                            .font(.custom("Bungee-Regular", size: geo.size.height / 35.0))
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(.white)
-                            .frame(width: geo.size.width / 1.2, height: geo.size.height / 3)
-                        Spacer()
-                            .frame(height: geo.size.height / 30)
+                    if gameOver {
+                        GameOver(timeRemaining: $timeRemaining, gameOver: $gameOver, shouldPopToRootView: $rootIsActive)
+                    } else {
                         VStack {
-                            Button(action: {
-                                answer1.toggle()
-                            }) {
-                                ZStack (alignment: Alignment(horizontal: .leading, vertical: .center)) {
-                                    Image(answer1 ? "correctQuizButton" : "quizButton")
+                            HStack {
+                                Spacer()
+                                    .frame(width: geo.size.width / 2.8)
+                                HStack {
+                                    Text(":")
+                                        .kerning(-geo.size.height / 55.0)
+                                        .font(.custom("PressStart2P-Regular", size: geo.size.height / 28.0))
+                                        .foregroundColor(.white)
+                                        .multilineTextAlignment(.center)
+                                    Text("\(timeRemaining)")
+                                        .kerning(-1)
+                                        .font(.custom("PressStart2P-Regular", size: geo.size.height / 28.0))
+                                        .foregroundColor(.white)
+                                        .multilineTextAlignment(.center)
+                                        .onReceive(timer) { _ in
+                                            if self.timeRemaining > 1 {
+                                                self.timeRemaining -= 1
+                                            } else {
+                                                timesUp = true
+                                                gameOver = true
+                                            }
+                                        }
+                                }
+                                .frame(width: sizeClass == .compact ? geo.size.width / 5.0 : geo.size.width / 7.0)
+                                Spacer()
+                                    .frame(width: geo.size.width / 4.8)
+                                Button(action: {
+                                    rootIsActive = false
+                                }) {
+                                    Image("exitButton")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
-                                        .frame(width: geo.size.width / 1.3)
-                                    Text("‘Umar")
-                                        .font(.custom("PressStart2P-Regular", size: geo.size.height / 40.0))
-                                        .foregroundColor(.quizAnswersColour)
-                                        .multilineTextAlignment(.center)
-                                        .offset(x: geo.size.width / 15.0)
+                                        .frame(width: sizeClass == .compact ? geo.size.width / 12.0 : geo.size.width / 18.0, height: sizeClass == .compact ? geo.size.height / 12.0 : geo.size.height / 18.0)
                                 }
+                                Spacer()
+                                    .frame(width: geo.size.width / 10.0)
                             }
-                            .buttonStyle(PlainButtonStyle())
-                            .padding(.bottom, 10.0)
-                            Button(action: {
-                                answer2.toggle()
-                            }) {
-                                ZStack (alignment: Alignment(horizontal: .leading, vertical: .center)) {
-                                    Image(answer2 ? "wrongQuizButton" : "quizButton")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: geo.size.width / 1.3)
-                                    Text("‘Ali")
-                                        .font(.custom("PressStart2P-Regular", size: geo.size.height / 40.0))
-                                        .foregroundColor(.quizAnswersColour)
-                                        .multilineTextAlignment(.center)
-                                        .offset(x: geo.size.width / 15.0)
+                            .padding(.top, geo.size.height / 12.0)
+                            Spacer()
+                                .frame(height: geo.size.height / 30)
+                            Text("During which Caliph’s reign did the Muslims conquer Jerusalem?")
+                                .font(.custom("Bungee-Regular", size: geo.size.height / 35.0))
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.white)
+                                .frame(width: geo.size.width / 1.2, height: geo.size.height / 3)
+                            Spacer()
+                                .frame(height: geo.size.height / 30)
+                            VStack {
+                                Button(action: {
+                                    answer1.toggle()
+                                }) {
+                                    ZStack (alignment: Alignment(horizontal: .leading, vertical: .center)) {
+                                        Image(answer1 ? "correctQuizButton" : "quizButton")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: geo.size.width / 1.3)
+                                        Text("‘Umar")
+                                            .font(.custom("PressStart2P-Regular", size: geo.size.height / 40.0))
+                                            .foregroundColor(.quizAnswersColour)
+                                            .multilineTextAlignment(.center)
+                                            .offset(x: geo.size.width / 15.0)
+                                    }
                                 }
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                            .padding(.bottom, 10.0)
-                            Button(action: {
-                                answer3.toggle()
-                            }) {
-                                ZStack (alignment: Alignment(horizontal: .leading, vertical: .center)) {
-                                    Image(answer3 ? "wrongQuizButton" : "quizButton")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: geo.size.width / 1.3)
-                                    Text("‘Uthman")
-                                        .font(.custom("PressStart2P-Regular", size: geo.size.height / 40.0))
-                                        .foregroundColor(.quizAnswersColour)
-                                        .multilineTextAlignment(.center)
-                                        .offset(x: geo.size.width / 15.0)
+                                .buttonStyle(PlainButtonStyle())
+                                .padding(.bottom, 10.0)
+                                Button(action: {
+                                    answer2.toggle()
+                                }) {
+                                    ZStack (alignment: Alignment(horizontal: .leading, vertical: .center)) {
+                                        Image(answer2 ? "wrongQuizButton" : "quizButton")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: geo.size.width / 1.3)
+                                        Text("‘Ali")
+                                            .font(.custom("PressStart2P-Regular", size: geo.size.height / 40.0))
+                                            .foregroundColor(.quizAnswersColour)
+                                            .multilineTextAlignment(.center)
+                                            .offset(x: geo.size.width / 15.0)
+                                    }
                                 }
+                                .buttonStyle(PlainButtonStyle())
+                                .padding(.bottom, 10.0)
+                                Button(action: {
+                                    answer3.toggle()
+                                }) {
+                                    ZStack (alignment: Alignment(horizontal: .leading, vertical: .center)) {
+                                        Image(answer3 ? "wrongQuizButton" : "quizButton")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: geo.size.width / 1.3)
+                                        Text("‘Uthman")
+                                            .font(.custom("PressStart2P-Regular", size: geo.size.height / 40.0))
+                                            .foregroundColor(.quizAnswersColour)
+                                            .multilineTextAlignment(.center)
+                                            .offset(x: geo.size.width / 15.0)
+                                    }
+                                }
+                                .buttonStyle(PlainButtonStyle())
                             }
-                            .buttonStyle(PlainButtonStyle())
+                            Spacer()
                         }
-                        Spacer()
                     }
+                    
                 }
                 .edgesIgnoringSafeArea(.all)
                 .frame(width: geo.size.width, height: geo.size.height)
             }
             .navigationBarTitle("")
-            .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .navigationBarBackButtonHidden(true)
     }
 }
 
 struct QuizView_Previews: PreviewProvider {
+    
+    @State static var isActive: Bool = false
+    
     static var previews: some View {
-        QuizView()
+        QuizView(rootIsActive: $isActive)
     }
 }
 
-
-//        VStack {
-//            Text("Score: \(score)")
-//                .fontWeight(.bold)
-//                .padding()
 //            Text(selectedQuestions[quizPosition].question)
 //                .fontWeight(.bold)
 //                .multilineTextAlignment(.center)
@@ -177,7 +262,7 @@ struct QuizView_Previews: PreviewProvider {
 //                    }
 //                    .alert(isPresented: $endQuiz) {
 //                        Alert(title: Text("The game has ended\nYour Score is: \(score)"), message: Text("Play Again?"), dismissButton: .destructive(Text("Play Again")) {
-////                            backToMenu()
+//                          backToMenu()
 //                        })
 //                    }
 //                    .padding()
@@ -202,53 +287,3 @@ struct QuizView_Previews: PreviewProvider {
 //        self.presentationMode.wrappedValue.dismiss()
 //    }
 //}
-
-//struct Arc: InsettableShape {
-//    var startAngle: Angle
-//    var endAngle: Angle
-//    var clockwise: Bool
-//    var insetAmount: CGFloat = 0
-//
-//    var animatableData: Angle{
-//        get { endAngle }
-//        set { self.endAngle = newValue }
-//    }
-//
-//    func path(in rect: CGRect) -> Path {
-//        let rotationAdjustment = Angle.degrees(90)
-//        let modifiedStart = startAngle - rotationAdjustment
-//        let modifiedEnd = endAngle - rotationAdjustment
-//
-//        var path = Path()
-//
-//        path.addArc(center: CGPoint(x: rect.midX, y: rect.midY), radius: rect.width / 2 - insetAmount, startAngle: modifiedStart, endAngle: modifiedEnd, clockwise: !clockwise)
-//        return path
-//    }
-//
-//    func inset(by amount: CGFloat) -> some InsettableShape {
-//        var arc = self
-//
-//        arc.insetAmount += amount
-//        return arc
-//    }
-//}
-
-//                    LinearGradient(gradient: Gradient(colors: [
-//                        Color(red: 0.3373, green: 0.1804, blue: 0.1137), //#572E1C
-//                        Color(red: 0.4549, green: 0.2549, blue: 0.1451), //#754226
-//                        Color(red: 0.4549, green: 0.2863, blue: 0.1216), //#754A1F
-//                        Color(red: 0.451, green: 0.3176, blue: 0.098)    //#73521A
-//                    ]), startPoint: .top, endPoint: .bottom)
-//                    LinearGradient(gradient: Gradient(colors: [
-//                        Color(red: 0.2471, green: 0.1961, blue: 0.4039), //#3F3267
-//                        Color(red: 0.3608, green: 0.2627, blue: 0.5451), //#5C438B
-//                        Color(red: 0.3882, green: 0.2627, blue: 0.5451), //#63438B
-//                        Color(red: 0.4235, green: 0.2627, blue: 0.5451)  //#6C438B
-//                    ]), startPoint: .top, endPoint: .bottom)
-//                    LinearGradient(gradient: Gradient(colors: [
-//                        Color(red: 0, green: 0.227, blue: 0.208), //#003A35
-//                        Color(red: 0, green: 0.345, blue: 0.318), //#005851
-//                        Color(red: 0, green: 0.361, blue: 0.271), //#005C45
-//                        Color(red: 0, green: 0.38, blue: 0.227), //#00613A
-//                        Color(red: 0, green: 0.4588, blue: 0.286) //#007549
-//                    ]), startPoint: .top, endPoint: .bottom)

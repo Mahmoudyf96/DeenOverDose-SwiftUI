@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @Environment(\.horizontalSizeClass) var sizeClass
+    @State var isActive: Bool = false
 
     var body: some View {
         NavigationView {
@@ -79,15 +80,20 @@ struct ContentView: View {
                                 }
                             }
                         }
-                        .padding(.vertical, sizeClass == .compact ? geo.size.width / 30.0 : geo.size.width / 50.0)
                         VStack {
-                            ZStack {
-                                Image("homeButton")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: sizeClass == .compact ? geo.size.width / 1.1 : geo.size.width / 1.2)
-                                Image("startingJourney")
+                            NavigationLink(destination: QuizView(rootIsActive: $isActive), isActive: $isActive) {
+                                ZStack {
+                                    Image("homeButton")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: sizeClass == .compact ? geo.size.width / 1.1 : geo.size.width / 1.2)
+                                    Image("startingJourney")
+                                }
                             }
+                            .isDetailLink(false)
+                            .navigationBarTitle("")
+                            .navigationBarHidden(true)
+                            .buttonStyle(PlainButtonStyle())
                             ZStack {
                                 Image("homeButton")
                                     .resizable()
