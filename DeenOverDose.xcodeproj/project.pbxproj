@@ -19,6 +19,10 @@
 		C2392BA32560F0AB00A93493 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2392BA22560F0AB00A93493 /* QuizView.swift */; };
 		C2392BA62560F0B700A93493 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2392BA52560F0B700A93493 /* Question.swift */; };
 		C2392BA92560F0C200A93493 /* deenodquestions.json in Resources */ = {isa = PBXBuildFile; fileRef = C2392BA82560F0C200A93493 /* deenodquestions.json */; };
+		C26D343D2584502800E2D9F6 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26D343C2584502800E2D9F6 /* ResultView.swift */; };
+		C26D34412584508100E2D9F6 /* ExitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26D34402584508100E2D9F6 /* ExitButton.swift */; };
+		C26D3445258450C600E2D9F6 /* quizOrImageTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26D3444258450C600E2D9F6 /* quizOrImageTextButton.swift */; };
+		C26D34482584517A00E2D9F6 /* GreenBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26D34472584517A00E2D9F6 /* GreenBackground.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +40,10 @@
 		C2392BA22560F0AB00A93493 /* QuizView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 		C2392BA52560F0B700A93493 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		C2392BA82560F0C200A93493 /* deenodquestions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deenodquestions.json; sourceTree = "<group>"; };
+		C26D343C2584502800E2D9F6 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		C26D34402584508100E2D9F6 /* ExitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitButton.swift; sourceTree = "<group>"; };
+		C26D3444258450C600E2D9F6 /* quizOrImageTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quizOrImageTextButton.swift; sourceTree = "<group>"; };
+		C26D34472584517A00E2D9F6 /* GreenBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenBackground.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,9 +87,8 @@
 			isa = PBXGroup;
 			children = (
 				C2392B8A2560F03D00A93493 /* DeenOverDoseApp.swift */,
-				C2392BA22560F0AB00A93493 /* QuizView.swift */,
-				C2392B8C2560F03D00A93493 /* ContentView.swift */,
-				C2392BA52560F0B700A93493 /* Question.swift */,
+				C26D344D258481D600E2D9F6 /* Views */,
+				C26D344E2584820500E2D9F6 /* Models */,
 				C2392B8E2560F04000A93493 /* Assets.xcassets */,
 				C2392B932560F04000A93493 /* Persistence.swift */,
 				C2392B982560F04000A93493 /* Info.plist */,
@@ -99,6 +106,27 @@
 				C2392B912560F04000A93493 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C26D344D258481D600E2D9F6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C2392B8C2560F03D00A93493 /* ContentView.swift */,
+				C2392BA22560F0AB00A93493 /* QuizView.swift */,
+				C26D343C2584502800E2D9F6 /* ResultView.swift */,
+				C26D34472584517A00E2D9F6 /* GreenBackground.swift */,
+				C26D34402584508100E2D9F6 /* ExitButton.swift */,
+				C26D3444258450C600E2D9F6 /* quizOrImageTextButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C26D344E2584820500E2D9F6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C2392BA52560F0B700A93493 /* Question.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,10 +202,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C26D343D2584502800E2D9F6 /* ResultView.swift in Sources */,
+				C26D34412584508100E2D9F6 /* ExitButton.swift in Sources */,
 				C2392B942560F04000A93493 /* Persistence.swift in Sources */,
 				C2392BA02560F07B00A93493 /* Bundle-Decodable.swift in Sources */,
 				C2392B8D2560F03D00A93493 /* ContentView.swift in Sources */,
 				C2392B8B2560F03D00A93493 /* DeenOverDoseApp.swift in Sources */,
+				C26D3445258450C600E2D9F6 /* quizOrImageTextButton.swift in Sources */,
+				C26D34482584517A00E2D9F6 /* GreenBackground.swift in Sources */,
 				C2392BA62560F0B700A93493 /* Question.swift in Sources */,
 				C2392BA32560F0AB00A93493 /* QuizView.swift in Sources */,
 			);

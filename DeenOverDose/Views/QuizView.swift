@@ -10,126 +10,8 @@ import SwiftUI
 extension Color {
     static let oldPrimaryColor = Color(UIColor.systemIndigo)
     static let quizAnswersColour = Color("quizTextColour")
-}
-
-struct greenBackground: View {
-    var body: some View {
-        LinearGradient(gradient: Gradient(colors: [
-            Color(red: 0.004, green: 0.608, blue: 0.302), //019B4D
-            Color(red: 0.004, green: 0.482, blue: 0.239), //017B3D
-            Color(red: 0, green: 0.345, blue: /*0.32*/ 0.169), //00582B
-            Color(red: 0, green: 0.224, blue: /*0.32*/ 0.111) //00391C
-        ]), startPoint: .top, endPoint: .bottom)
-    }
-}
-
-struct singlePlayerScoreBoard: View {
-    @State var score: Int
-    @State var bestScore: Int
-    
-    @State var geoHeight: CGFloat
-    
-    var body: some View {
-        Group {
-            Spacer()
-                .frame(height: geoHeight / 12.0)
-            VStack {
-                Text("SCORE")
-                    .font(.custom("PressStart2P-Regular", size: geoHeight / 45.0))
-                    .foregroundColor(.white)
-                    .padding(.bottom, 10)
-                Text("\(score)")
-                    .font(.custom("PressStart2P-Regular", size: geoHeight / 14.0))
-                    .foregroundColor(.white)
-            }
-            Spacer()
-                .frame(height: geoHeight / 16.0)
-            VStack {
-                Text("BEST")
-                    .font(.custom("PressStart2P-Regular", size: geoHeight / 45.0))
-                    .foregroundColor(.white)
-                    .padding(.bottom, 10)
-                Text("\(bestScore)")
-                    .font(.custom("PressStart2P-Regular", size: geoHeight / 14.0))
-                    .foregroundColor(.white)
-            }
-            Spacer()
-                .frame(height: geoHeight / 10.0)
-        }
-    }
-}
-
-struct quizImageOrTextButton: View {
-    @State var answerText: String
-    @State var imageText: String
-    
-    @State var geoWidth: CGFloat
-    
-    @Environment(\.horizontalSizeClass) var sizeClass
-    
-    var body: some View {
-        ZStack {
-            Image("quizButton")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: sizeClass == .compact ? geoWidth / 1.2 : geoWidth / 1.3)
-            Image(imageText)
-        }
-    }
-}
-
-struct GameOverView: View {
-    
-    @Environment(\.horizontalSizeClass) var sizeClass
-    
-    @Binding var timeRemaining: Int
-    @Binding var gameOver: Bool
-    @Binding var shouldPopToRootView: Bool
-    
-    @Binding var score: Int
-    @Binding var bestScore: Int
-    
-    var body: some View {
-        GeometryReader { geo in
-            VStack (alignment: .center) {
-                Spacer()
-                Image("gameOver")
-                singlePlayerScoreBoard(score: score, bestScore: bestScore, geoHeight: geo.size.height)
-                VStack {
-                    Button(action: {
-                        timeRemaining = 12
-                        gameOver = false
-                        score = 0
-                    }) {
-                        quizImageOrTextButton(answerText: "", imageText: "playAgain", geoWidth: geo.size.width)
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                    .padding(.bottom, 10)
-                    Button(action: {
-                        self.shouldPopToRootView = false
-                    }) {
-                        quizImageOrTextButton(answerText: "", imageText: "mainMenuText", geoWidth: geo.size.width)
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                }
-                Spacer()
-            }
-            .edgesIgnoringSafeArea(.all)
-            .frame(width: geo.size.width, height: geo.size.height)
-        }
-    }
-}
-
-struct ExitButton: View {
-    
-    @Environment(\.horizontalSizeClass) var sizeClass
-    
-    var body: some View {
-        Image("exitButton")
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .frame(width: sizeClass == .compact ? 27 : 40, height: sizeClass == .compact ? 27 : 40)
-    }
+    static let correctColour = Color("correctColour")
+    static let incorrectColour = Color("incorrectColour")
 }
 
 struct QuizView: View {
@@ -140,9 +22,14 @@ struct QuizView: View {
     
     @State private var quizPosition = 0
     @State private var correctAnswer = false
-    @State private var incorrectAnswer = false
+    @State private var wrongAnswer = false
     
     @State private var gameOver = false
+    @State private var timesUp = false
+    
+    @State private var answerOneActive = false
+    @State private var answerTwoActive = false
+    @State private var answerThreeActive = false
     
     @State var score = 0
     @Binding var bestScore: Int
@@ -154,43 +41,63 @@ struct QuizView: View {
         NavigationView {
             GeometryReader { geo in
                 ZStack {
-                    greenBackground()
+                    GreenBackground()
                     if gameOver {
-                        GameOverView(timeRemaining: $timeRemaining, gameOver: $gameOver, shouldPopToRootView: $rootIsActive, score: $score, bestScore: $bestScore)
+                        ResultView(timeRemaining: $timeRemaining, gameOver: $gameOver, shouldPopToRootView: $rootIsActive, score: $score, bestScore: $bestScore)
                     } else {
                         VStack {
                             HStack {
                                 Spacer()
                                     .frame(width: geo.size.width / 2.8)
-                                
-//                                ZStack {
-//                                    HStack {
-//                                        Text(":")
-//                                            .kerning(-geo.size.height / 55.0)
-//                                            .font(.custom("PressStart2P-Regular", size: geo.size.height / 28.0))
-//                                            .foregroundColor(.white)
-//                                            .multilineTextAlignment(.center)
-//                                        Text("\(timeRemaining)")
-//                                            .kerning(-1)
-//                                            .font(.custom("PressStart2P-Regular", size: geo.size.height / 28.0))
-//                                            .foregroundColor(.white)
-//                                            .multilineTextAlignment(.center)
-//                                            .onReceive(timer) { _ in
-//                                                if self.timeRemaining > 4 {
-//                                                    self.timeRemaining -= 1
-//                                                } else if self.timeRemaining < 4 && self.timeRemaining > 1 {
-//                                                    checkForBest()
-//                                                } else {
-//                                                    gameOver = true
-//                                                }
-//                                            }
-//                                    }
-                                    Circle()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(width: sizeClass == .compact ? 60 : 120, height: sizeClass == .compact ? 20 : 40)
-                                        .offset(x: sizeClass == .compact ? 7 : 20)
-//                                }
-//                                .frame(width: sizeClass == .compact ? 85 : 120)
+                                ZStack {
+                                    HStack {
+                                        Text(":")
+                                            .kerning(-geo.size.height / 55.0)
+                                            .font(.custom("PressStart2P-Regular", size: geo.size.height / 28.0))
+                                            .foregroundColor(.white)
+                                            .multilineTextAlignment(.center)
+                                        Text("\(timeRemaining - 3)")
+                                            .kerning(-1)
+                                            .font(.custom("PressStart2P-Regular", size: geo.size.height / 28.0))
+                                            .foregroundColor(.white)
+                                            .multilineTextAlignment(.center)
+                                            .onReceive(timer) { _ in
+                                                if self.timeRemaining > 4 {
+                                                    self.timeRemaining -= 1
+                                                    checkForBest()
+                                                } else if self.timeRemaining > 1 && self.timeRemaining <= 4 {
+                                                    self.timeRemaining -= 1
+                                                    checkForBest()
+                                                    timesUp = true
+                                                } else {
+                                                    gameOver = true
+                                                    timesUp = false
+                                                    wrongAnswer = false
+                                                    correctAnswer = false
+                                                    answerOneActive = false
+                                                    answerTwoActive = false
+                                                    answerThreeActive = false
+                                                }
+                                            }
+                                    }
+                                    .opacity(correctAnswer ? 0.0 : (wrongAnswer ? 0.0 : (timesUp ? 0.0 : 1.0)))
+                                    ZStack {
+                                        Circle()
+                                            .aspectRatio(contentMode: .fill)
+                                            .frame(width: sizeClass == .compact ? 55 : 80, height: sizeClass == .compact ? 25 : 40)
+                                            .foregroundColor(correctAnswer ? .correctColour : .incorrectColour)
+                                            .offset(x: sizeClass == .compact ? 7 : 20)
+                                            .opacity(correctAnswer ? 0.8 : (wrongAnswer ? 0.8 : (timesUp && !correctAnswer && correctAnswer ? 1.0 : 0)))
+                                        Image(systemName: correctAnswer ? "checkmark" : "xmark")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                            .frame(width: 20, height: 20)
+                                            .foregroundColor(.white)
+                                            .offset(x: sizeClass == .compact ? 7 : 20)
+                                            .opacity(correctAnswer ? 1.0 : (wrongAnswer ? 1.0 : (timesUp && wrongAnswer && correctAnswer ? 1.0 : 0)))
+                                    }
+                                }
+                                .frame(width: sizeClass == .compact ? 85 : 120)
                                 Spacer()
                                     .frame(width: geo.size.width / 4.8)
                                 Button(action: {
@@ -214,11 +121,13 @@ struct QuizView: View {
                                 .frame(height: geo.size.height / 30)
                             VStack {
                                 Button(action: {
-                                    correctAnswer.toggle()
+                                    correctAnswer = true
                                     score += 1
+                                    answerOneActive = true
+                                    timeRemaining = 3
                                 }) {
                                     ZStack (alignment: Alignment(horizontal: .leading, vertical: .center)) {
-                                        Image(correctAnswer ? "correctQuizButton" : (incorrectAnswer ? "wrongQuizButton" : "quizButton"))
+                                        Image(correctAnswer && answerOneActive ? "correctQuizButton" : (wrongAnswer && answerOneActive ? "wrongQuizButton" : "quizButton"))
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
                                             .frame(width: geo.size.width / 1.3)
@@ -229,13 +138,16 @@ struct QuizView: View {
                                             .offset(x: geo.size.width / 15.0)
                                     }
                                 }
-                                .buttonStyle(PlainButtonStyle())
                                 .padding(.bottom, 10.0)
+                                .disabled(answerOneActive || answerTwoActive || answerThreeActive || timesUp)
+                                .buttonStyle(PlainButtonStyle())
                                 Button(action: {
-                                    incorrectAnswer.toggle()
+                                    wrongAnswer = true
+                                    answerTwoActive = true
+                                    timeRemaining = 3
                                 }) {
                                     ZStack (alignment: Alignment(horizontal: .leading, vertical: .center)) {
-                                        Image(correctAnswer ? "correctQuizButton" : (incorrectAnswer ? "wrongQuizButton" : "quizButton"))
+                                        Image(correctAnswer && answerTwoActive ? "correctQuizButton" : (wrongAnswer && answerTwoActive ? "wrongQuizButton" : "quizButton"))
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
                                             .frame(width: geo.size.width / 1.3)
@@ -246,13 +158,16 @@ struct QuizView: View {
                                             .offset(x: geo.size.width / 15.0)
                                     }
                                 }
-                                .buttonStyle(PlainButtonStyle())
                                 .padding(.bottom, 10.0)
+                                .disabled(answerOneActive || answerTwoActive || answerThreeActive || timesUp)
+                                .buttonStyle(PlainButtonStyle())
                                 Button(action: {
-                                    incorrectAnswer.toggle()
+                                    wrongAnswer = true
+                                    answerThreeActive = true
+                                    timeRemaining = 3
                                 }) {
                                     ZStack (alignment: Alignment(horizontal: .leading, vertical: .center)) {
-                                        Image(correctAnswer ? "correctQuizButton" : (incorrectAnswer ? "wrongQuizButton" : "quizButton"))
+                                        Image(correctAnswer && answerThreeActive ? "correctQuizButton" : (wrongAnswer && answerThreeActive ? "wrongQuizButton" : "quizButton"))
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
                                             .frame(width: geo.size.width / 1.3)
@@ -263,6 +178,7 @@ struct QuizView: View {
                                             .offset(x: geo.size.width / 15.0)
                                     }
                                 }
+                                .disabled(answerOneActive || answerTwoActive || answerThreeActive || timesUp)
                                 .buttonStyle(PlainButtonStyle())
                             }
                             Spacer()

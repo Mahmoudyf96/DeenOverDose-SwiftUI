@@ -60,11 +60,26 @@ struct ContentView: View {
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: sizeClass == .compact ? geo.size.width / 5.0 : geo.size.width / 6.5)
                                     .offset(y: 20)
-                                Image("homeStatButton")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: sizeClass == .compact ? geo.size.width / 2.35 : geo.size.width / 3.0)
-                                    .offset(y: 10)
+                                ZStack {
+                                    Image("homeStatButton")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: sizeClass == .compact ? geo.size.width / 2.35 : geo.size.width / 3.0)
+                                        .offset(y: 10)
+                                    VStack {
+                                        Image("winLossText")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: sizeClass == .compact ? geo.size.width / 6.3 : geo.size.width / 8.0)
+                                            .offset(x: sizeClass == .compact ? -geo.size.width / 13 : -geo.size.width / 15)
+                                            .padding(.top)
+                                        Image("rightWrongText")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: sizeClass == .compact ? geo.size.width / 6.3 : geo.size.width / 8.0)
+                                            .offset(x: sizeClass == .compact ? -geo.size.width / 13 : -geo.size.width / 15)
+                                    }
+                                }
                                 ZStack {
                                     Image("homeStatButton")
                                         .resizable()
