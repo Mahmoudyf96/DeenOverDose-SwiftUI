@@ -140,7 +140,6 @@ struct QuizView: View {
                                 }
                                 .padding(.bottom, 10.0)
                                 .disabled(answerOneActive || answerTwoActive || answerThreeActive || timesUp)
-                                .buttonStyle(PlainButtonStyle())
                                 Button(action: {
                                     wrongAnswer = true
                                     answerTwoActive = true
@@ -160,7 +159,6 @@ struct QuizView: View {
                                 }
                                 .padding(.bottom, 10.0)
                                 .disabled(answerOneActive || answerTwoActive || answerThreeActive || timesUp)
-                                .buttonStyle(PlainButtonStyle())
                                 Button(action: {
                                     wrongAnswer = true
                                     answerThreeActive = true
@@ -179,7 +177,6 @@ struct QuizView: View {
                                     }
                                 }
                                 .disabled(answerOneActive || answerTwoActive || answerThreeActive || timesUp)
-                                .buttonStyle(PlainButtonStyle())
                             }
                             Spacer()
                         }
