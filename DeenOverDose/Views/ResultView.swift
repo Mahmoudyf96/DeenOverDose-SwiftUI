@@ -67,14 +67,14 @@ struct ResultView: View {
                         gameOver = false
                         score = 0
                     }) {
-                        quizImageOrTextButton(answerText: "", imageText: "playAgain", geoWidth: geo.size.width)
+                        AnswerButton(answerText: "", imageText: "playAgain", geoWidth: geo.size.width, geoHeight: geo.size.height)
                     }
                     .buttonStyle(PlainButtonStyle())
                     .padding(.bottom, 10)
                     Button(action: {
                         self.shouldPopToRootView = false
                     }) {
-                        quizImageOrTextButton(answerText: "", imageText: "mainMenuText", geoWidth: geo.size.width)
+                        AnswerButton(answerText: "", imageText: "mainMenuText", geoWidth: geo.size.width, geoHeight: geo.size.height)
                     }
                     .buttonStyle(PlainButtonStyle())
                 }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 extension Color {
     static let oldPrimaryColor = Color(UIColor.systemIndigo)
@@ -20,6 +21,10 @@ struct QuizView: View {
     
     @Binding var rootIsActive: Bool
     
+    @Binding var correct: Int
+    @Binding var wrong: Int
+    @Binding var answered: Int
+    
     @State private var quizPosition = 0
     @State private var correctAnswer = false
     @State private var wrongAnswer = false
@@ -31,6 +36,8 @@ struct QuizView: View {
     @State private var answerTwoActive = false
     @State private var answerThreeActive = false
     
+    var set: String
+    
     @State var score = 0
     @Binding var bestScore: Int
     
@@ -38,13 +45,12 @@ struct QuizView: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        NavigationView {
-            GeometryReader { geo in
-                ZStack {
-                    GreenBackground()
-                    if gameOver {
-                        ResultView(timeRemaining: $timeRemaining, gameOver: $gameOver, shouldPopToRootView: $rootIsActive, score: $score, bestScore: $bestScore)
-                    } else {
+        GeometryReader { geo in
+            ZStack {
+                GreenBackground()
+                if gameOver {
+                    ResultView(timeRemaining: $timeRemaining, gameOver: $gameOver, shouldPopToRootView: $rootIsActive, score: $score, bestScore: $bestScore)
+                } else {
                         VStack {
                             HStack {
                                 Spacer()
@@ -112,7 +118,7 @@ struct QuizView: View {
                             .padding(.top, geo.size.height / 8.0)
                             Spacer()
                                 .frame(height: geo.size.height / 30)
-                            Text("During which Caliph’s reign did the Muslims conquer Jerusalem?")
+                            Text("")
                                 .font(.custom("Bungee-Regular", size: geo.size.height / 35.0))
                                 .multilineTextAlignment(.center)
                                 .foregroundColor(.white)
@@ -131,7 +137,7 @@ struct QuizView: View {
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
                                             .frame(width: geo.size.width / 1.3)
-                                        Text("‘Umar")
+                                        Text("'Umar")
                                             .font(.custom("PressStart2P-Regular", size: geo.size.height / 40.0))
                                             .foregroundColor(.quizAnswersColour)
                                             .multilineTextAlignment(.center)
@@ -150,7 +156,7 @@ struct QuizView: View {
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
                                             .frame(width: geo.size.width / 1.3)
-                                        Text("‘Ali")
+                                        Text("'Ali")
                                             .font(.custom("PressStart2P-Regular", size: geo.size.height / 40.0))
                                             .foregroundColor(.quizAnswersColour)
                                             .multilineTextAlignment(.center)
@@ -169,7 +175,7 @@ struct QuizView: View {
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
                                             .frame(width: geo.size.width / 1.3)
-                                        Text("‘Uthman")
+                                        Text("'Uthman")
                                             .font(.custom("PressStart2P-Regular", size: geo.size.height / 40.0))
                                             .foregroundColor(.quizAnswersColour)
                                             .multilineTextAlignment(.center)
@@ -180,17 +186,12 @@ struct QuizView: View {
                             }
                             Spacer()
                         }
-                    }
-                    
                 }
-                .edgesIgnoringSafeArea(.all)
-                .frame(width: geo.size.width, height: geo.size.height)
+                
             }
-            .navigationBarTitle("")
-            .navigationBarHidden(true)
-            .navigationBarBackButtonHidden(true)
+            .edgesIgnoringSafeArea(.all)
+            .frame(width: geo.size.width, height: geo.size.height)
         }
-        .navigationViewStyle(StackNavigationViewStyle())
         .navigationBarTitle("")
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
@@ -208,43 +209,22 @@ struct QuizView_Previews: PreviewProvider {
     @State static var isActive: Bool = false
     @State static var bestScore: Int = 0
     
+    @State static var correct = 0
+    @State static var wrong = 0
+    @State static var answered = 0
+    
+    @State static var set = "trivia-endless"
+    
     static var previews: some View {
-        QuizView(rootIsActive: $isActive, bestScore: $bestScore)
+        QuizView(rootIsActive: $isActive, correct: $correct, wrong: $wrong, answered: $answered, set: set, bestScore: $bestScore)
     }
 }
 
-//            Text(selectedQuestions[quizPosition].question)
-//                .fontWeight(.bold)
-//                .multilineTextAlignment(.center)
-//                .padding()
-//            ForEach(selectedQuestions[quizPosition].answers.shuffled(), id: \.self) { answer in
-//                VStack {
-//                    Button(action: {
-//                        checkAnswer(selectedQuestions[quizPosition].correctAnswer, answer)
-//                    }) {
-//                        ZStack {
-//                            RoundedRectangle(cornerRadius: 25.0, style: .continuous)
-//                                .foregroundColor(.black)
-//                                .opacity(0.8)
-//                            Text(answer)
-//                                .foregroundColor(.white)
-//                                .padding()
-//                        }
-//                        .frame(width: 250, height: 100)
-//                    }
-//                    .alert(isPresented: $endQuiz) {
-//                        Alert(title: Text("The game has ended\nYour Score is: \(score)"), message: Text("Play Again?"), dismissButton: .destructive(Text("Play Again")) {
-//                          backToMenu()
-//                        })
-//                    }
-//                    .padding()
-//                }
-//            }
-//        }
-//        .navigationBarTitle("")
-//        .navigationBarBackButtonHidden(true)
-//        .navigationBarHidden(true)
-//    }
+//    Text(selectedQuestions[quizPosition].question)
+
+//    ForEach(selectedQuestions[quizPosition].answers.shuffled(), id: \.self) { answer in
+
+
 
 //    func checkAnswer(_ cCA: String, _ sA: String) {
 //        if sA == cCA {
@@ -254,8 +234,7 @@ struct QuizView_Previews: PreviewProvider {
 //            endQuiz = true
 //        }
 //    }
-//
+
 //    func backToMenu() {
 //        self.presentationMode.wrappedValue.dismiss()
 //    }
-//}

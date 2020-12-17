@@ -3,11 +3,11 @@
         "id": 1,
         "question": "Aishah RA said that the character of the Prophet Muhammad SAW resembled",
         "answers": [
-            "The Quran",
+            "The Qur'an",
             "The Angels",
             "His Parents"
         ],
-        "correctAnswer": "The Quran",
+        "correctAnswer": "The Qur'an",
         "topic": "PT",
         "difficulty": "Medium",
         "reference": "N/A"
