@@ -25,7 +25,9 @@ struct QuizView: View {
     @Binding var wrong: Int
     @Binding var answered: Int
     
-    @State private var quizPosition = 0
+    @Binding var bestScore: Int
+    @State var score = 0
+    
     @State private var correctAnswer = false
     @State private var wrongAnswer = false
     
@@ -36,12 +38,11 @@ struct QuizView: View {
     @State private var answerTwoActive = false
     @State private var answerThreeActive = false
     
-    var set: String
-    
-    @State var score = 0
-    @Binding var bestScore: Int
+    @StateObject var data = QuestionViewModel()
+    @State var set: String = "trivia-endless"
     
     @State var timeRemaining = 15
+    
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
@@ -51,6 +52,7 @@ struct QuizView: View {
                 if gameOver {
                     ResultView(timeRemaining: $timeRemaining, gameOver: $gameOver, shouldPopToRootView: $rootIsActive, score: $score, bestScore: $bestScore)
                 } else {
+                    ForEach(data.questions.reversed().indices) { quizPosition in
                         VStack {
                             HStack {
                                 Spacer()
@@ -118,7 +120,7 @@ struct QuizView: View {
                             .padding(.top, geo.size.height / 8.0)
                             Spacer()
                                 .frame(height: geo.size.height / 30)
-                            Text("")
+                            Text(data.questions[quizPosition].question)
                                 .font(.custom("Bungee-Regular", size: geo.size.height / 35.0))
                                 .multilineTextAlignment(.center)
                                 .foregroundColor(.white)
@@ -127,8 +129,7 @@ struct QuizView: View {
                                 .frame(height: geo.size.height / 30)
                             VStack {
                                 Button(action: {
-                                    correctAnswer = true
-                                    score += 1
+                                    checkAnswer(data.questions[quizPosition].correctAnswer, data.questions[quizPosition].answers[0])
                                     answerOneActive = true
                                     timeRemaining = 3
                                 }) {
@@ -137,7 +138,7 @@ struct QuizView: View {
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
                                             .frame(width: geo.size.width / 1.3)
-                                        Text("'Umar")
+                                        Text(data.questions[quizPosition].answers[0])
                                             .font(.custom("PressStart2P-Regular", size: geo.size.height / 40.0))
                                             .foregroundColor(.quizAnswersColour)
                                             .multilineTextAlignment(.center)
@@ -147,7 +148,7 @@ struct QuizView: View {
                                 .padding(.bottom, 10.0)
                                 .disabled(answerOneActive || answerTwoActive || answerThreeActive || timesUp)
                                 Button(action: {
-                                    wrongAnswer = true
+                                    checkAnswer(data.questions[quizPosition].correctAnswer, data.questions[quizPosition].answers[1])
                                     answerTwoActive = true
                                     timeRemaining = 3
                                 }) {
@@ -156,7 +157,7 @@ struct QuizView: View {
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
                                             .frame(width: geo.size.width / 1.3)
-                                        Text("'Ali")
+                                        Text(data.questions[quizPosition].answers[1])
                                             .font(.custom("PressStart2P-Regular", size: geo.size.height / 40.0))
                                             .foregroundColor(.quizAnswersColour)
                                             .multilineTextAlignment(.center)
@@ -166,7 +167,7 @@ struct QuizView: View {
                                 .padding(.bottom, 10.0)
                                 .disabled(answerOneActive || answerTwoActive || answerThreeActive || timesUp)
                                 Button(action: {
-                                    wrongAnswer = true
+                                    checkAnswer(data.questions[quizPosition].correctAnswer, data.questions[quizPosition].answers[2])
                                     answerThreeActive = true
                                     timeRemaining = 3
                                 }) {
@@ -175,7 +176,7 @@ struct QuizView: View {
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
                                             .frame(width: geo.size.width / 1.3)
-                                        Text("'Uthman")
+                                        Text(data.questions[quizPosition].answers[2])
                                             .font(.custom("PressStart2P-Regular", size: geo.size.height / 40.0))
                                             .foregroundColor(.quizAnswersColour)
                                             .multilineTextAlignment(.center)
@@ -186,6 +187,7 @@ struct QuizView: View {
                             }
                             Spacer()
                         }
+                    }
                 }
                 
             }
@@ -195,11 +197,28 @@ struct QuizView: View {
         .navigationBarTitle("")
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
+        .onAppear(perform: {
+            data.getQuestions(set: set)
+        })
     }
     
     func checkForBest() {
         if score > bestScore {
             bestScore = score
+        }
+    }
+    
+    func checkAnswer(_ cCA: String, _ sA: String) {
+        if sA == cCA {
+            score += 1
+            correct += 1
+            answered += 1
+            correctAnswer = true
+        } else {
+            wrong += 1
+            answered += 1
+            wrongAnswer = true
+            gameOver = true
         }
     }
 }
@@ -216,7 +235,7 @@ struct QuizView_Previews: PreviewProvider {
     @State static var set = "trivia-endless"
     
     static var previews: some View {
-        QuizView(rootIsActive: $isActive, correct: $correct, wrong: $wrong, answered: $answered, set: set, bestScore: $bestScore)
+        QuizView(rootIsActive: $isActive, correct: $correct, wrong: $wrong, answered: $answered, bestScore: $bestScore)
     }
 }
 
@@ -224,16 +243,6 @@ struct QuizView_Previews: PreviewProvider {
 
 //    ForEach(selectedQuestions[quizPosition].answers.shuffled(), id: \.self) { answer in
 
-
-
-//    func checkAnswer(_ cCA: String, _ sA: String) {
-//        if sA == cCA {
-//            score += 1
-//            quizPosition += 1
-//        } else {
-//            endQuiz = true
-//        }
-//    }
 
 //    func backToMenu() {
 //        self.presentationMode.wrappedValue.dismiss()
