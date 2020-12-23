@@ -16,8 +16,9 @@ class QuestionViewModel: ObservableObject {
     func getQuestions(set: String) {
         
         db.collection("trivia-endless").getDocuments { (snap, error) in
+            
             guard let data = snap else { return }
-
+            
             self.questions = data.documents.compactMap({ (doc) -> Question? in
                 return try? doc.data(as: Question.self)
             })

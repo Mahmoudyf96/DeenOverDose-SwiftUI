@@ -52,6 +52,13 @@ struct ResultView: View {
     @Binding var gameOver: Bool
     @Binding var shouldPopToRootView: Bool
     
+    @Binding var correctAnswer: Bool
+    @Binding var wrongAnswer: Bool
+    
+    @Binding var answerOneActive: Bool
+    @Binding var answerTwoActive: Bool
+    @Binding var answerThreeActive: Bool
+    
     @Binding var score: Int
     @Binding var bestScore: Int
     
@@ -64,6 +71,11 @@ struct ResultView: View {
                 VStack {
                     Button(action: {
                         timeRemaining = 15
+                        correctAnswer = false
+                        wrongAnswer = false
+                        answerThreeActive = false
+                        answerTwoActive = false
+                        answerOneActive = false
                         gameOver = false
                         score = 0
                     }) {

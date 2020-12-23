@@ -101,6 +101,7 @@ struct MainMenuView: View {
                                 }
                             }
                         }
+                        .padding(.bottom, 5)
                         VStack {
                             NavigationLink(destination: QuizView(rootIsActive: $isActive, correct: $correct, wrong: $wrong, answered: $answered,  bestScore: $bestScore, set: "trivia-endless"), isActive: $isActive) {
                                 ZStack {
@@ -141,7 +142,6 @@ struct MainMenuView: View {
                             }
                             .padding(.top, 10)
                         }
-                        .padding(.bottom, 20)
                     }
                 }
                 .edgesIgnoringSafeArea(.all)
