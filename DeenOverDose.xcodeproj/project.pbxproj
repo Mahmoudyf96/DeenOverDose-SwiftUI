@@ -160,12 +160,12 @@
 			children = (
 				C2392B8C2560F03D00A93493 /* ContentView.swift */,
 				C26D34552584F3FB00E2D9F6 /* MainMenuView.swift */,
+				C2124E392594ABBD0032CECA /* ChooseModeView.swift */,
 				C2392BA22560F0AB00A93493 /* QuizView.swift */,
 				C26D343C2584502800E2D9F6 /* ResultView.swift */,
 				C26D34402584508100E2D9F6 /* ExitButton.swift */,
 				C26D3444258450C600E2D9F6 /* AnswerButton.swift */,
 				C26D34472584517A00E2D9F6 /* GreenBackground.swift */,
-				C2124E392594ABBD0032CECA /* ChooseModeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

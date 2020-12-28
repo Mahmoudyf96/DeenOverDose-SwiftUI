@@ -103,7 +103,7 @@ struct MainMenuView: View {
                         }
                         .padding(.bottom, 5)
                         VStack {
-                            NavigationLink(destination: QuizView(rootIsActive: $isActive, correct: $correct, wrong: $wrong, answered: $answered,  bestScore: $bestScore, set: "trivia-endless"), isActive: $isActive) {
+                            NavigationLink(destination: ChooseModeView(rootIsActive: $isActive, bestScore: $bestScore, correct: $correct, wrong: $wrong, answered: $answered), isActive: $isActive) {
                                 ZStack {
                                     Image("homeButton")
                                         .resizable()
