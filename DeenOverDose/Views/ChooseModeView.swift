@@ -7,6 +7,40 @@
 
 import SwiftUI
 
+struct ModeButton: View {
+    
+    @State var geoWidth: CGFloat
+    @State var geoHeight: CGFloat
+    
+    @Environment(\.horizontalSizeClass) var sizeClass
+    
+    @State var title: String
+    @State var ribbon: String
+    
+    @State var right: Bool
+    
+    var body: some View {
+        ZStack {
+            Image("modeButton")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: sizeClass == .compact ? geoWidth / 1.3 : geoWidth / 1.4)
+            Image(title)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: sizeClass == .compact ? geoHeight / 20.5 : geoHeight / 20.0)
+                .offset(x: -25)
+            Image(ribbon)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: sizeClass == .compact ? geoWidth / 6.0 : geoWidth / 6.5)
+                .offset(x: sizeClass == .compact ? geoWidth / 4.0 : geoWidth / 5.0, y: sizeClass == .compact ? geoWidth / -18.5 : geoWidth / -25.0)
+        }
+        .padding(.bottom, 20)
+        .offset(x: sizeClass == .compact ? (right ? geoWidth / 25.5 : -geoWidth / 25.5) : (right ? geoWidth / 14.5 : -geoWidth / 14.5))
+    }
+}
+
 struct ChooseModeView: View {
     
     @Binding var rootIsActive: Bool
@@ -50,79 +84,13 @@ struct ChooseModeView: View {
                     .padding(.top, geo.size.height / 11.0)
                     Spacer()
                         .frame(height: geo.size.height / 9.0)
-                    ZStack {
-                        Image("modeButton")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: sizeClass == .compact ? geo.size.width / 1.3 : geo.size.width / 1.4)
-                        Image("storyTitle")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: sizeClass == .compact ? geo.size.height / 20.5 : geo.size.height / 20.0)
-                            .offset(x: -25)
-                        Image("storyRibbon")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: sizeClass == .compact ? geo.size.width / 6.0 : geo.size.width / 6.5)
-                            .offset(x: sizeClass == .compact ? geo.size.width / 4.0 : geo.size.width / 5.0, y: sizeClass == .compact ? geo.size.width / -18.5 : geo.size.width / -25.0)
-                    }
-                    .padding(.bottom, 20)
-                    .offset(x: sizeClass == .compact ? -geo.size.width / 25.5 : -geo.size.width / 14.5)
-                    ZStack {
-                        Image("modeButton")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: sizeClass == .compact ? geo.size.width / 1.3 : geo.size.width / 1.4)
-                        Image("arenaTitle")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: sizeClass == .compact ? geo.size.height / 20.5 : geo.size.height / 20.0)
-                            .offset(x: -25)
-                        Image("arenaRibbon")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: sizeClass == .compact ? geo.size.width / 6.0 : geo.size.width / 6.5)
-                            .offset(x: sizeClass == .compact ? geo.size.width / 4.0 : geo.size.width / 5.0, y: sizeClass == .compact ? geo.size.width / -18.5 : geo.size.width / -25.0)
-                    }
-                    .padding(.bottom, 20)
-                    .offset(x: sizeClass == .compact ? geo.size.width / 25.5 : geo.size.width / 14.5)
+                    ModeButton(geoWidth: geo.size.width, geoHeight: geo.size.height, title: "storyTitle", ribbon: "storyRibbon", right: true)
+                    ModeButton(geoWidth: geo.size.width, geoHeight: geo.size.height, title: "arenaTitle", ribbon: "arenaRibbon", right: false)
                     NavigationLink(destination: QuizView(rootIsActive: $rootIsActive, correct: $correct, wrong: $wrong, answered: $answered,  bestScore: $bestScore, set: "trivia-endless")) {
-                        ZStack {
-                            Image("modeButton")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: sizeClass == .compact ? geo.size.width / 1.3 : geo.size.width / 1.4)
-                            Image("trialsTitle")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(height: sizeClass == .compact ? geo.size.height / 20.5 : geo.size.height / 20.0)
-                                .offset(x: -25)
-                            Image("trialsRibbon")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: sizeClass == .compact ? geo.size.width / 6.0 : geo.size.width / 6.5)
-                                .offset(x: sizeClass == .compact ? geo.size.width / 4.0 : geo.size.width / 5.0, y: sizeClass == .compact ? geo.size.width / -18.5 : geo.size.width / -25.0)
-                        }
+                        ModeButton(geoWidth: geo.size.width, geoHeight: geo.size.height, title: "trialsTitle", ribbon: "trialsRibbon", right: true)
                     }
-                    .padding(.bottom, 20)
-                    .offset(x: sizeClass == .compact ? -geo.size.width / 25.5 : -geo.size.width / 14.5)
-                    ZStack {
-                        Image("modeButton")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: sizeClass == .compact ? geo.size.width / 1.3 : geo.size.width / 1.4)
-                        Image("liveTitle")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: sizeClass == .compact ? geo.size.height / 20.5 : geo.size.height / 20.0)
-                            .offset(x: -25)
-                        Image("liveRibbon")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: sizeClass == .compact ? geo.size.width / 6.0 : geo.size.width / 6.5)
-                            .offset(x: sizeClass == .compact ? geo.size.width / 4.0 : geo.size.width / 5.0, y: sizeClass == .compact ? geo.size.width / -18.5 : geo.size.width / -25.0)
-                    }
-                    .offset(x: sizeClass == .compact ? geo.size.width / 25.5 : geo.size.width / 14.5)
+                    
+                    ModeButton(geoWidth: geo.size.width, geoHeight: geo.size.height, title: "liveTitle", ribbon: "liveRibbon", right: false)
                     Spacer()
                 }
             }
