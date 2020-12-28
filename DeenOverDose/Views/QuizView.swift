@@ -58,7 +58,8 @@ struct QuizView: View {
                     ResultView(timeRemaining: $timeRemaining, gameOver: $gameOver, shouldPopToRootView: $rootIsActive, correctAnswer: $correctAnswer, wrongAnswer: $wrongAnswer, answerOneActive: $answerOneActive, answerTwoActive: $answerTwoActive, answerThreeActive: $answerThreeActive, score: $score, bestScore: $bestScore)
                 } else if data.questions.isEmpty {
                     ProgressView()
-                        .foregroundColor(.white)
+                        .progressViewStyle(CircularProgressViewStyle(tint: Color.white))
+                        .scaleEffect(1.5, anchor: .center)
                 } else {
                     VStack {
                         HStack {
@@ -82,13 +83,15 @@ struct QuizView: View {
                                             } else if self.timeRemaining > 1 && self.timeRemaining <= 4 {
                                                 self.timeRemaining -= 1
                                                 checkForBest()
-                                                timesUp = true
-                                                if timesUpCheck(data.questions[quizPosition].correctAnswer, data.questions[quizPosition].answers[2]) == true {
-                                                    answerThreeActive = true
-                                                } else if timesUpCheck(data.questions[quizPosition].correctAnswer, data.questions[quizPosition].answers[1]) == true {
-                                                    answerTwoActive = true
-                                                } else if timesUpCheck(data.questions[quizPosition].correctAnswer, data.questions[quizPosition].answers[0]) == true {
-                                                    answerOneActive = true
+                                                if !correctAnswer && !wrongAnswer {
+                                                    timesUp = true
+                                                    if timesUpCheck(data.questions[quizPosition].correctAnswer, data.questions[quizPosition].answers[2]) == true {
+                                                        answerThreeActive = true
+                                                    } else if timesUpCheck(data.questions[quizPosition].correctAnswer, data.questions[quizPosition].answers[1]) == true {
+                                                        answerTwoActive = true
+                                                    } else if timesUpCheck(data.questions[quizPosition].correctAnswer, data.questions[quizPosition].answers[0]) == true {
+                                                        answerOneActive = true
+                                                    }
                                                 }
                                             } else {
                                                 if quizPosition == data.questions.count - 1 {

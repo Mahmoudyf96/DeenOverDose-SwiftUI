@@ -35,6 +35,8 @@
 	<true/>
 	<key>UILaunchScreen</key>
 	<dict>
+		<key>UIColorName</key>
+		<string>GreenBackground</string>
 		<key>UIImageName</key>
 		<string>DeenOD - HomeLogo</string>
 		<key>UIImageRespectsSafeAreaInsets</key>
