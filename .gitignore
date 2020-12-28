@@ -4,6 +4,7 @@ app.js
 package-lock.json
 package.json
 validation.js
+deenodquestions.json
 
 # ignore an entire directory
 # /mydebugdir/
