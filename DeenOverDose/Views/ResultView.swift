@@ -55,6 +55,10 @@ struct ResultView: View {
     @Binding var correctAnswer: Bool
     @Binding var wrongAnswer: Bool
     
+    @Binding var correctAnswerOne: Bool
+    @Binding var correctAnswerTwo: Bool
+    @Binding var correctAnswerThree: Bool
+    
     @Binding var answerOneActive: Bool
     @Binding var answerTwoActive: Bool
     @Binding var answerThreeActive: Bool
@@ -73,6 +77,11 @@ struct ResultView: View {
                         timeRemaining = 15
                         correctAnswer = false
                         wrongAnswer = false
+                        
+                        correctAnswerOne = false
+                        correctAnswerTwo = false
+                        correctAnswerThree = false
+                        
                         answerThreeActive = false
                         answerTwoActive = false
                         answerOneActive = false

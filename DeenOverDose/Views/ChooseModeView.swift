@@ -25,9 +25,8 @@ struct ModeButton: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: sizeClass == .compact ? geoWidth / 1.3 : geoWidth / 1.4)
-            Image(title)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
+            Text(title)
+                .font(.custom("DeenOD", size: geoHeight / 15.0))
                 .frame(height: sizeClass == .compact ? geoHeight / 20.5 : geoHeight / 20.0)
                 .offset(x: -25)
             Image(ribbon)
@@ -63,10 +62,9 @@ struct ChooseModeView: View {
                             .frame(width: geo.size.width / 2.8)
                         ZStack {
                             HStack {
-                                Image("modeScreenTitle")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: sizeClass == .compact ? geo.size.height / 3.5 : geo.size.height / 3.5)
+                                Text("Choose Your Battle")
+                                    .font(.custom("DeenOD", size: geo.size.height / 35.0))
+                                    .frame(width: sizeClass == .compact ? geo.size.height / 3.0 : geo.size.height / 3.5)
                             }
                         }
                         .frame(width: sizeClass == .compact ? 85 : 120)
@@ -84,13 +82,13 @@ struct ChooseModeView: View {
                     .padding(.top, geo.size.height / 11.0)
                     Spacer()
                         .frame(height: geo.size.height / 9.0)
-                    ModeButton(geoWidth: geo.size.width, geoHeight: geo.size.height, title: "storyTitle", ribbon: "storyRibbon", right: true)
-                    ModeButton(geoWidth: geo.size.width, geoHeight: geo.size.height, title: "arenaTitle", ribbon: "arenaRibbon", right: false)
+                    ModeButton(geoWidth: geo.size.width, geoHeight: geo.size.height, title: "Story", ribbon: "storyRibbon", right: true)
+                    ModeButton(geoWidth: geo.size.width, geoHeight: geo.size.height, title: "Arena", ribbon: "arenaRibbon", right: false)
                     NavigationLink(destination: QuizView(rootIsActive: $rootIsActive, correct: $correct, wrong: $wrong, answered: $answered,  bestScore: $bestScore, set: "trivia-endless")) {
-                        ModeButton(geoWidth: geo.size.width, geoHeight: geo.size.height, title: "trialsTitle", ribbon: "trialsRibbon", right: true)
+                        ModeButton(geoWidth: geo.size.width, geoHeight: geo.size.height, title: "Trials", ribbon: "trialsRibbon", right: true)
                     }
                     
-                    ModeButton(geoWidth: geo.size.width, geoHeight: geo.size.height, title: "liveTitle", ribbon: "liveRibbon", right: false)
+                    ModeButton(geoWidth: geo.size.width, geoHeight: geo.size.height, title: "Live", ribbon: "liveRibbon", right: false)
                     Spacer()
                 }
             }

@@ -35,6 +35,10 @@ struct QuizView: View {
     @State private var correctAnswer = false
     @State private var wrongAnswer = false
     
+    @State private var correctAnswerOne = false
+    @State private var correctAnswerTwo = false
+    @State private var correctAnswerThree = false
+    
     @State private var gameOver = false
     @State private var timesUp = false
     
@@ -55,7 +59,7 @@ struct QuizView: View {
             ZStack {
                 GreenBackground()
                 if gameOver {
-                    ResultView(timeRemaining: $timeRemaining, gameOver: $gameOver, shouldPopToRootView: $rootIsActive, correctAnswer: $correctAnswer, wrongAnswer: $wrongAnswer, answerOneActive: $answerOneActive, answerTwoActive: $answerTwoActive, answerThreeActive: $answerThreeActive, score: $score, bestScore: $bestScore)
+                    ResultView(timeRemaining: $timeRemaining, gameOver: $gameOver, shouldPopToRootView: $rootIsActive, correctAnswer: $correctAnswer, wrongAnswer: $wrongAnswer, correctAnswerOne: $correctAnswerOne, correctAnswerTwo: $correctAnswerTwo, correctAnswerThree: $correctAnswerThree, answerOneActive: $answerOneActive, answerTwoActive: $answerTwoActive, answerThreeActive: $answerThreeActive, score: $score, bestScore: $bestScore)
                 } else if data.questions.isEmpty {
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle(tint: Color.white))
@@ -85,51 +89,46 @@ struct QuizView: View {
                                                 checkForBest()
                                                 if !correctAnswer && !wrongAnswer {
                                                     timesUp = true
-                                                    if timesUpCheck(data.questions[quizPosition].correctAnswer, data.questions[quizPosition].answers[2]) == true {
+                                                    if timesUpCheck(data.questions[quizPosition].correctAnswer, data.questions[quizPosition].answers[2]) {
+                                                        correctAnswerThree = true
                                                         answerThreeActive = true
-                                                    } else if timesUpCheck(data.questions[quizPosition].correctAnswer, data.questions[quizPosition].answers[1]) == true {
+                                                    } else if timesUpCheck(data.questions[quizPosition].correctAnswer, data.questions[quizPosition].answers[1]) {
+                                                        correctAnswerTwo = true
                                                         answerTwoActive = true
-                                                    } else if timesUpCheck(data.questions[quizPosition].correctAnswer, data.questions[quizPosition].answers[0]) == true {
+                                                    } else if timesUpCheck(data.questions[quizPosition].correctAnswer, data.questions[quizPosition].answers[0]) {
+                                                        correctAnswerOne = true
+                                                        answerOneActive = true
+                                                    }
+                                                } else if wrongAnswer {
+                                                    if wrongAnswer(data.questions[quizPosition].correctAnswer, data.questions[quizPosition].answers[2]) {
+                                                        correctAnswerThree = true
+                                                        answerThreeActive = true
+                                                    } else if wrongAnswer(data.questions[quizPosition].correctAnswer, data.questions[quizPosition].answers[1]) {
+                                                        correctAnswerTwo = true
+                                                        answerTwoActive = true
+                                                    } else if wrongAnswer(data.questions[quizPosition].correctAnswer, data.questions[quizPosition].answers[0]) {
+                                                        correctAnswerOne = true
                                                         answerOneActive = true
                                                     }
                                                 }
                                             } else {
                                                 if quizPosition == data.questions.count - 1 {
-                                                    gameOver = true
-                                                    timesUp = false
-                                                    wrongAnswer = false
-                                                    correctAnswer = false
-                                                    answerOneActive = false
-                                                    answerTwoActive = false
-                                                    answerThreeActive = false
-                                                    quizPosition = 0
+                                                    reset()
+                                                    correctAnswerOne = false
+                                                    correctAnswerTwo = false
+                                                    correctAnswerThree = false
                                                 } else if timesUp && wrongAnswer == false && correctAnswer == true {
-                                                    gameOver = true
-                                                    timesUp = false
-                                                    wrongAnswer = false
-                                                    correctAnswer = false
-                                                    answerOneActive = false
-                                                    answerTwoActive = false
-                                                    answerThreeActive = false
-                                                    quizPosition = 0
+                                                    reset()
+                                                    correctAnswerOne = false
+                                                    correctAnswerTwo = false
+                                                    correctAnswerThree = false
                                                 } else if wrongAnswer == true {
-                                                    gameOver = true
-                                                    timesUp = false
-                                                    wrongAnswer = false
-                                                    correctAnswer = false
-                                                    answerOneActive = false
-                                                    answerTwoActive = false
-                                                    answerThreeActive = false
-                                                    quizPosition = 0
+                                                    reset()
                                                 } else {
-                                                    timesUp = false
-                                                    wrongAnswer = false
-                                                    correctAnswer = false
-                                                    answerOneActive = false
-                                                    answerTwoActive = false
-                                                    answerThreeActive = false
-                                                    quizPosition += 1
-                                                    timeRemaining = 15
+                                                    nextQuestion()
+                                                    correctAnswerOne = false
+                                                    correctAnswerTwo = false
+                                                    correctAnswerThree = false
                                                 }
                                             }
                                         }
@@ -143,7 +142,7 @@ struct QuizView: View {
                                         .foregroundColor(correctAnswer ? .correctColour : .incorrectColour)
                                         .offset(x: sizeClass == .compact ? 7 : 20)
                                         .opacity(timesUp && !wrongAnswer && correctAnswer ? 0.0 : (correctAnswer ? 0.8 : (wrongAnswer ? 0.8 : 0)))
-                                    Image(systemName: correctAnswer ? "checkmark" : "xmark")
+                                    Image(correctAnswer ? "Correct" : "Wrong")
                                         .resizable()
                                         .aspectRatio(contentMode: .fill)
                                         .frame(width: 20, height: 20)
@@ -189,12 +188,14 @@ struct QuizView: View {
                             .frame(height: geo.size.height / 150.0)
                         VStack {
                             Button(action: {
-                                checkAnswer(data.questions[quizPosition].correctAnswer, data.questions[quizPosition].answers[0])
+                                if checkAnswer(data.questions[quizPosition].correctAnswer, data.questions[quizPosition].answers[0]) {
+                                    correctAnswerOne = true
+                                }
                                 answerOneActive = true
                                 timeRemaining = 4
                             }) {
                                 ZStack (alignment: Alignment(horizontal: .leading, vertical: .center)) {
-                                    Image(correctAnswer && answerOneActive ? "correctQuizButton" : (wrongAnswer && answerOneActive ? "wrongQuizButton" : "quizButton"))
+                                    Image(correctAnswerOne && answerOneActive ? "correctQuizButton" : (wrongAnswer && answerOneActive ? "wrongQuizButton" : "quizButton"))
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: geo.size.width / 1.15)
@@ -208,12 +209,14 @@ struct QuizView: View {
                             .padding(.bottom, 20.0)
                             .disabled(answerOneActive || answerTwoActive || answerThreeActive || timesUp)
                             Button(action: {
-                                checkAnswer(data.questions[quizPosition].correctAnswer, data.questions[quizPosition].answers[1])
+                                if checkAnswer(data.questions[quizPosition].correctAnswer, data.questions[quizPosition].answers[1]) {
+                                    correctAnswerTwo = true
+                                }
                                 answerTwoActive = true
                                 timeRemaining = 4
                             }) {
                                 ZStack (alignment: Alignment(horizontal: .leading, vertical: .center)) {
-                                    Image(correctAnswer && answerTwoActive ? "correctQuizButton" : (wrongAnswer && answerTwoActive ? "wrongQuizButton" : "quizButton"))
+                                    Image(correctAnswerTwo && answerTwoActive ? "correctQuizButton" : (wrongAnswer && answerTwoActive ? "wrongQuizButton" : "quizButton"))
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: geo.size.width / 1.15)
@@ -227,12 +230,14 @@ struct QuizView: View {
                             .padding(.bottom, 20.0)
                             .disabled(answerOneActive || answerTwoActive || answerThreeActive || timesUp)
                             Button(action: {
-                                checkAnswer(data.questions[quizPosition].correctAnswer, data.questions[quizPosition].answers[2])
+                                if checkAnswer(data.questions[quizPosition].correctAnswer, data.questions[quizPosition].answers[2]) {
+                                    correctAnswerThree = true
+                                }
                                 answerThreeActive = true
                                 timeRemaining = 4
                             }) {
                                 ZStack (alignment: Alignment(horizontal: .leading, vertical: .center)) {
-                                    Image(correctAnswer && answerThreeActive ? "correctQuizButton" : (wrongAnswer && answerThreeActive ? "wrongQuizButton" : "quizButton"))
+                                    Image(correctAnswerThree && answerThreeActive ? "correctQuizButton" : (wrongAnswer && answerThreeActive ? "wrongQuizButton" : "quizButton"))
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: geo.size.width / 1.15)
@@ -260,28 +265,60 @@ struct QuizView: View {
         })
     }
     
+    func nextQuestion() {
+        timesUp = false
+        wrongAnswer = false
+        correctAnswer = false
+        answerOneActive = false
+        answerTwoActive = false
+        answerThreeActive = false
+        quizPosition += 1
+        timeRemaining = 15
+    }
+    
+    func reset() {
+        gameOver = true
+        timesUp = false
+        wrongAnswer = false
+        correctAnswer = false
+        answerOneActive = false
+        answerTwoActive = false
+        answerThreeActive = false
+        quizPosition = 0
+    }
+    
     func checkForBest() {
         if score > bestScore {
             bestScore = score
         }
     }
     
-    func checkAnswer(_ cCA: String, _ sA: String) {
+    func checkAnswer(_ cCA: String, _ sA: String) -> Bool {
         if sA == cCA {
             score += 1
             correct += 1
             answered += 1
             correctAnswer = true
+            return true
         } else {
             wrong += 1
             answered += 1
             wrongAnswer = true
+            return false
         }
     }
     
     func timesUpCheck(_ cCA: String, _ sA: String) -> Bool {
         if sA == cCA {
             correctAnswer = true
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func wrongAnswer(_ cCA: String, _ sA: String) -> Bool {
+        if sA == cCA {
             return true
         } else {
             return false

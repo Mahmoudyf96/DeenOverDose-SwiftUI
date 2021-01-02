@@ -27,6 +27,10 @@
 		C26D34482584517A00E2D9F6 /* GreenBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26D34472584517A00E2D9F6 /* GreenBackground.swift */; };
 		C26D34562584F3FB00E2D9F6 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26D34552584F3FB00E2D9F6 /* MainMenuView.swift */; };
 		C26D345B2584FD3E00E2D9F6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C26D345A2584FD3E00E2D9F6 /* GoogleService-Info.plist */; };
+		C2A24F5C259E36AD003ED4ED /* DeenOD.otf in Resources */ = {isa = PBXBuildFile; fileRef = C2A24F5B259E36AD003ED4ED /* DeenOD.otf */; };
+		C2C3D21A259A42EC00442087 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C3D219259A42EC00442087 /* SettingsView.swift */; };
+		C2C3D21D259A463E00442087 /* HeroesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C3D21C259A463E00442087 /* HeroesView.swift */; };
+		C2C3D221259A467300442087 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C3D220259A467300442087 /* StatsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +56,10 @@
 		C26D34472584517A00E2D9F6 /* GreenBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenBackground.swift; sourceTree = "<group>"; };
 		C26D34552584F3FB00E2D9F6 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		C26D345A2584FD3E00E2D9F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C2A24F5B259E36AD003ED4ED /* DeenOD.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DeenOD.otf; sourceTree = "<group>"; };
+		C2C3D219259A42EC00442087 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C2C3D21C259A463E00442087 /* HeroesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesView.swift; sourceTree = "<group>"; };
+		C2C3D220259A467300442087 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		EC9BEA3C193C07AAFBAE895A /* Pods-DeenOverDose.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeenOverDose.debug.xcconfig"; path = "Target Support Files/Pods-DeenOverDose/Pods-DeenOverDose.debug.xcconfig"; sourceTree = "<group>"; };
 		F5DACAF32F5B4C850ACD489E /* Pods-DeenOverDose.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeenOverDose.release.xcconfig"; path = "Target Support Files/Pods-DeenOverDose/Pods-DeenOverDose.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +112,7 @@
 		C237439C257EEAFF001C5244 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				C2A24F5B259E36AD003ED4ED /* DeenOD.otf */,
 				C23743A0257EEB49001C5244 /* Bungee-Regular.otf */,
 				C237439D257EEB3C001C5244 /* Bungee-Inline.otf */,
 				C23743A3257EEC59001C5244 /* PressStart2P-Regular.ttf */,
@@ -161,6 +170,9 @@
 				C2392B8C2560F03D00A93493 /* ContentView.swift */,
 				C26D34552584F3FB00E2D9F6 /* MainMenuView.swift */,
 				C2124E392594ABBD0032CECA /* ChooseModeView.swift */,
+				C2C3D21C259A463E00442087 /* HeroesView.swift */,
+				C2C3D220259A467300442087 /* StatsView.swift */,
+				C2C3D219259A42EC00442087 /* SettingsView.swift */,
 				C2392BA22560F0AB00A93493 /* QuizView.swift */,
 				C26D343C2584502800E2D9F6 /* ResultView.swift */,
 				C26D34402584508100E2D9F6 /* ExitButton.swift */,
@@ -237,6 +249,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2A24F5C259E36AD003ED4ED /* DeenOD.otf in Resources */,
 				C23743A4257EEC59001C5244 /* PressStart2P-Regular.ttf in Resources */,
 				C2392BA92560F0C200A93493 /* deenodquestions.json in Resources */,
 				C2392B922560F04000A93493 /* Preview Assets.xcassets in Resources */,
@@ -298,6 +311,7 @@
 			files = (
 				C26D343D2584502800E2D9F6 /* ResultView.swift in Sources */,
 				C26D34412584508100E2D9F6 /* ExitButton.swift in Sources */,
+				C2C3D21D259A463E00442087 /* HeroesView.swift in Sources */,
 				C2392BA02560F07B00A93493 /* Bundle-Decodable.swift in Sources */,
 				C2392B8D2560F03D00A93493 /* ContentView.swift in Sources */,
 				C26D34562584F3FB00E2D9F6 /* MainMenuView.swift in Sources */,
@@ -306,8 +320,10 @@
 				C26D34482584517A00E2D9F6 /* GreenBackground.swift in Sources */,
 				C2124E3A2594ABBD0032CECA /* ChooseModeView.swift in Sources */,
 				C2392BA62560F0B700A93493 /* Question.swift in Sources */,
+				C2C3D221259A467300442087 /* StatsView.swift in Sources */,
 				C217CC2E25850A7100D65396 /* QuestionViewModel.swift in Sources */,
 				C2392BA32560F0AB00A93493 /* QuizView.swift in Sources */,
+				C2C3D21A259A42EC00442087 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

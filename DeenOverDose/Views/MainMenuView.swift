@@ -116,31 +116,37 @@ struct MainMenuView: View {
                             .navigationBarTitle("")
                             .navigationBarHidden(true)
                             .buttonStyle(PlainButtonStyle())
-                            ZStack {
-                                Image("homeButton")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: sizeClass == .compact ? geo.size.width / 1.1 : geo.size.width / 1.2)
-                                Image("heroesTitle")
+                            NavigationLink(destination: HeroesView()) {
+                                ZStack {
+                                    Image("homeButton")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: sizeClass == .compact ? geo.size.width / 1.1 : geo.size.width / 1.2)
+                                    Image("heroesTitle")
+                                }
+                                .padding(.top, 10)
                             }
-                            .padding(.top, 10)
-                            ZStack {
-                                Image("homeButton")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: sizeClass == .compact ? geo.size.width / 1.1 : geo.size.width / 1.2)
-                                Image("statsTitle")
-                                
+                            NavigationLink(destination: StatsView()) {
+                                ZStack {
+                                    Image("homeButton")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: sizeClass == .compact ? geo.size.width / 1.1 : geo.size.width / 1.2)
+                                    Image("statsTitle")
+                                    
+                                }
+                                .padding(.top, 10)
                             }
-                            .padding(.top, 10)
-                            ZStack {
-                                Image("homeButton")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: sizeClass == .compact ? geo.size.width / 1.1 : geo.size.width / 1.2)
-                                Image("settingsTitle")
+                            NavigationLink(destination: SettingsView()) {
+                                ZStack {
+                                    Image("homeButton")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: sizeClass == .compact ? geo.size.width / 1.1 : geo.size.width / 1.2)
+                                    Image("settingsTitle")
+                                }
+                                .padding(.top, 10)
                             }
-                            .padding(.top, 10)
                         }
                     }
                 }
