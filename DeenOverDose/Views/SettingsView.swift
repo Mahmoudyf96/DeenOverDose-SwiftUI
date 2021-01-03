@@ -46,10 +46,38 @@ struct HomeButton: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: sizeClass == .compact ? geoWidth / 1.1 : geoWidth / 1.2)
             Text(buttonText)
-                .font(.custom("DeenOD", size: geoHeight / 30.0))
+                .font(.custom("DeenOD", size: geoHeight / 35.0))
                 .offset(y: sizeClass == .compact ? -geoWidth / 150.0 : -geoWidth / 100.0)
         }
-        .padding(.top, 10)
+        .padding(.top, 5)
+    }
+}
+
+struct SettingsButton: View {
+    @Environment(\.horizontalSizeClass) var sizeClass
+    
+    @State var geoWidth: CGFloat
+    @State var geoHeight: CGFloat
+    
+    @State var buttonText: String
+    @State var buttonImage: String
+    
+    var body: some View {
+        ZStack {
+            Image("settingsButton")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: sizeClass == .compact ? geoWidth / 3.8 : geoWidth / 1.2)
+            VStack {
+                Image(buttonImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: sizeClass == .compact ? geoWidth / 12.5 : geoWidth / 1.2)
+                Text(buttonText)
+                    .font(.custom("DeenOD", size: geoHeight / 52.0))
+            }
+        }
+        .padding(.vertical, 10)
     }
 }
 
@@ -86,7 +114,7 @@ struct SettingsView: View {
                         Spacer()
                             .frame(width: geo.size.width / 10.0)
                     }
-                    .padding(.top, geo.size.height / 11.0)
+                    .padding(.top, geo.size.height / 18.0)
                     HStack {
                         Toggles(geoHeight: geo.size.height, toggleText: "Music", toggleType: $musicToggle)
                         Toggles(geoHeight: geo.size.height, toggleText: "Sound", toggleType: $soundToggle)
@@ -111,8 +139,16 @@ struct SettingsView: View {
                             .foregroundColor(.white)
                             .padding(.top, 10)
                         HomeButton(geoWidth: geo.size.width, geoHeight: geo.size.height, buttonText: "Purchase: $2.99")
-                        HomeButton(geoWidth: geo.size.width, geoHeight: geo.size.height, buttonText: "Bundle: $17.99")
+                        HomeButton(geoWidth: geo.size.width, geoHeight: geo.size.height, buttonText: "Hero Bundle: $17.99")
+                        HomeButton(geoWidth: geo.size.width, geoHeight: geo.size.height, buttonText: "Restore Purchases")
                     }
+                    HStack {
+                        SettingsButton(geoWidth: geo.size.width, geoHeight: geo.size.height, buttonText: "Rate App", buttonImage: "rateImage")
+                        SettingsButton(geoWidth: geo.size.width, geoHeight: geo.size.height, buttonText: "Credits", buttonImage: "creditsImage")
+                        SettingsButton(geoWidth: geo.size.width, geoHeight: geo.size.height, buttonText: "FeedBack", buttonImage: "feedbackImage")
+                    }
+                    Spacer()
+                        .frame(height: sizeClass == .compact ? geo.size.width / 15.0 : geo.size.width / 6.0)
                 }
             }
             .edgesIgnoringSafeArea(.all)
