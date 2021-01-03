@@ -31,6 +31,9 @@
 		C2C3D21A259A42EC00442087 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C3D219259A42EC00442087 /* SettingsView.swift */; };
 		C2C3D21D259A463E00442087 /* HeroesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C3D21C259A463E00442087 /* HeroesView.swift */; };
 		C2C3D221259A467300442087 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C3D220259A467300442087 /* StatsView.swift */; };
+		C2C46EDE25A1F32800A9DFC7 /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C46EDD25A1F32800A9DFC7 /* CreditsView.swift */; };
+		C2C46EE325A2083000A9DFC7 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C46EE225A2083000A9DFC7 /* BackButton.swift */; };
+		C2C46EE725A2086400A9DFC7 /* ForwardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C46EE625A2086400A9DFC7 /* ForwardButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +63,9 @@
 		C2C3D219259A42EC00442087 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C2C3D21C259A463E00442087 /* HeroesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroesView.swift; sourceTree = "<group>"; };
 		C2C3D220259A467300442087 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		C2C46EDD25A1F32800A9DFC7 /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
+		C2C46EE225A2083000A9DFC7 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		C2C46EE625A2086400A9DFC7 /* ForwardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForwardButton.swift; sourceTree = "<group>"; };
 		EC9BEA3C193C07AAFBAE895A /* Pods-DeenOverDose.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeenOverDose.debug.xcconfig"; path = "Target Support Files/Pods-DeenOverDose/Pods-DeenOverDose.debug.xcconfig"; sourceTree = "<group>"; };
 		F5DACAF32F5B4C850ACD489E /* Pods-DeenOverDose.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeenOverDose.release.xcconfig"; path = "Target Support Files/Pods-DeenOverDose/Pods-DeenOverDose.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -168,16 +174,19 @@
 			isa = PBXGroup;
 			children = (
 				C2392B8C2560F03D00A93493 /* ContentView.swift */,
+				C26D34472584517A00E2D9F6 /* GreenBackground.swift */,
+				C26D34402584508100E2D9F6 /* ExitButton.swift */,
+				C2C46EE225A2083000A9DFC7 /* BackButton.swift */,
+				C2C46EE625A2086400A9DFC7 /* ForwardButton.swift */,
+				C26D3444258450C600E2D9F6 /* AnswerButton.swift */,
 				C26D34552584F3FB00E2D9F6 /* MainMenuView.swift */,
 				C2124E392594ABBD0032CECA /* ChooseModeView.swift */,
+				C2392BA22560F0AB00A93493 /* QuizView.swift */,
+				C26D343C2584502800E2D9F6 /* ResultView.swift */,
 				C2C3D21C259A463E00442087 /* HeroesView.swift */,
 				C2C3D220259A467300442087 /* StatsView.swift */,
 				C2C3D219259A42EC00442087 /* SettingsView.swift */,
-				C2392BA22560F0AB00A93493 /* QuizView.swift */,
-				C26D343C2584502800E2D9F6 /* ResultView.swift */,
-				C26D34402584508100E2D9F6 /* ExitButton.swift */,
-				C26D3444258450C600E2D9F6 /* AnswerButton.swift */,
-				C26D34472584517A00E2D9F6 /* GreenBackground.swift */,
+				C2C46EDD25A1F32800A9DFC7 /* CreditsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -312,8 +321,11 @@
 				C26D343D2584502800E2D9F6 /* ResultView.swift in Sources */,
 				C26D34412584508100E2D9F6 /* ExitButton.swift in Sources */,
 				C2C3D21D259A463E00442087 /* HeroesView.swift in Sources */,
+				C2C46EE725A2086400A9DFC7 /* ForwardButton.swift in Sources */,
 				C2392BA02560F07B00A93493 /* Bundle-Decodable.swift in Sources */,
 				C2392B8D2560F03D00A93493 /* ContentView.swift in Sources */,
+				C2C46EDE25A1F32800A9DFC7 /* CreditsView.swift in Sources */,
+				C2C46EE325A2083000A9DFC7 /* BackButton.swift in Sources */,
 				C26D34562584F3FB00E2D9F6 /* MainMenuView.swift in Sources */,
 				C2392B8B2560F03D00A93493 /* DeenOverDoseApp.swift in Sources */,
 				C26D3445258450C600E2D9F6 /* AnswerButton.swift in Sources */,

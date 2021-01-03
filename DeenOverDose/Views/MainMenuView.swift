@@ -10,7 +10,11 @@ import SwiftUI
 struct MainMenuView: View {
     @Environment(\.horizontalSizeClass) var sizeClass
     
-    @State var isActive: Bool = false
+    @State var modeIsActive: Bool = false
+    @State var heroesIsActive: Bool = false
+    @State var statsIsActive: Bool = false
+    @State var settingsIsActive: Bool = false
+    
     @State var bestScore: Int = 0
     
     //Analytics
@@ -103,7 +107,7 @@ struct MainMenuView: View {
                         }
                         .padding(.bottom, 5)
                         VStack {
-                            NavigationLink(destination: ChooseModeView(rootIsActive: $isActive, bestScore: $bestScore, correct: $correct, wrong: $wrong, answered: $answered), isActive: $isActive) {
+                            NavigationLink(destination: ChooseModeView(rootIsActive: $modeIsActive, bestScore: $bestScore, correct: $correct, wrong: $wrong, answered: $answered), isActive: $modeIsActive) {
                                 ZStack {
                                     Image("homeButton")
                                         .resizable()
@@ -130,7 +134,7 @@ struct MainMenuView: View {
                             .navigationBarTitle("")
                             .navigationBarHidden(true)
                             .buttonStyle(PlainButtonStyle())
-                            NavigationLink(destination: StatsView()) {
+                            NavigationLink(destination: StatsView(rootIsActive: $statsIsActive), isActive: $statsIsActive) {
                                 ZStack {
                                     Image("homeButton")
                                         .resizable()
@@ -145,7 +149,7 @@ struct MainMenuView: View {
                             .navigationBarTitle("")
                             .navigationBarHidden(true)
                             .buttonStyle(PlainButtonStyle())
-                            NavigationLink(destination: SettingsView(rootIsActive: $isActive), isActive: $isActive) {
+                            NavigationLink(destination: SettingsView(rootIsActive: $settingsIsActive), isActive: $settingsIsActive) {
                                 ZStack {
                                     Image("homeButton")
                                         .resizable()

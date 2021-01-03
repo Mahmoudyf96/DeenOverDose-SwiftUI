@@ -59,23 +59,24 @@ struct ChooseModeView: View {
                 VStack {
                     HStack {
                         Spacer()
-                            .frame(width: geo.size.width / 2.8)
+                            .frame(width: geo.size.width / 10)
+                        
+                        Button(action: {
+                            rootIsActive = false
+                        }) {
+                            BackButton()
+                        }
+                        Spacer()
+                            .frame(width: geo.size.width / 4.8)
                         HStack {
                             Text("Choose Your Battle")
                                 .font(.custom("DeenOD", size: geo.size.height / 35.0))
                                 .frame(width: sizeClass == .compact ? geo.size.height / 3.0 : geo.size.height / 2.5)
-                                .offset(y: sizeClass == .compact ? -2 : -4)
+                                .offset(y: sizeClass == .compact ? 0 : -4)
                         }
                         .frame(width: sizeClass == .compact ? 120 : 200)
                         Spacer()
-                            .frame(width: geo.size.width / 4.8)
-                        Button(action: {
-                            rootIsActive = false
-                        }) {
-                            ExitButton()
-                        }
-                        Spacer()
-                            .frame(width: geo.size.width / 10.0)
+                            .frame(width: geo.size.width / 2.8)
                     }
                     .padding(.top, geo.size.height / 11.0)
                     Spacer()
