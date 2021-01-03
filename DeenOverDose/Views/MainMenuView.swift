@@ -126,6 +126,10 @@ struct MainMenuView: View {
                                 }
                                 .padding(.top, 10)
                             }
+                            .isDetailLink(false)
+                            .navigationBarTitle("")
+                            .navigationBarHidden(true)
+                            .buttonStyle(PlainButtonStyle())
                             NavigationLink(destination: StatsView()) {
                                 ZStack {
                                     Image("homeButton")
@@ -137,7 +141,11 @@ struct MainMenuView: View {
                                 }
                                 .padding(.top, 10)
                             }
-                            NavigationLink(destination: SettingsView()) {
+                            .isDetailLink(false)
+                            .navigationBarTitle("")
+                            .navigationBarHidden(true)
+                            .buttonStyle(PlainButtonStyle())
+                            NavigationLink(destination: SettingsView(rootIsActive: $isActive), isActive: $isActive) {
                                 ZStack {
                                     Image("homeButton")
                                         .resizable()
@@ -147,6 +155,10 @@ struct MainMenuView: View {
                                 }
                                 .padding(.top, 10)
                             }
+                            .isDetailLink(false)
+                            .navigationBarTitle("")
+                            .navigationBarHidden(true)
+                            .buttonStyle(PlainButtonStyle())
                         }
                     }
                 }

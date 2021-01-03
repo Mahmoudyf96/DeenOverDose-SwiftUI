@@ -26,9 +26,9 @@ struct ModeButton: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: sizeClass == .compact ? geoWidth / 1.3 : geoWidth / 1.4)
             Text(title)
-                .font(.custom("DeenOD", size: geoHeight / 15.0))
+                .font(.custom("DeenOD", size: geoHeight / 17.0))
                 .frame(height: sizeClass == .compact ? geoHeight / 20.5 : geoHeight / 20.0)
-                .offset(x: -25)
+                .offset(x: sizeClass == .compact ? -geoWidth / 15.0 : -geoWidth / 15.0, y: sizeClass == .compact ? geoWidth / -80.5 : geoWidth / -100.0)
             Image(ribbon)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
@@ -60,22 +60,20 @@ struct ChooseModeView: View {
                     HStack {
                         Spacer()
                             .frame(width: geo.size.width / 2.8)
-                        ZStack {
-                            HStack {
-                                Text("Choose Your Battle")
-                                    .font(.custom("DeenOD", size: geo.size.height / 35.0))
-                                    .frame(width: sizeClass == .compact ? geo.size.height / 3.0 : geo.size.height / 3.5)
-                            }
+                        HStack {
+                            Text("Choose Your Battle")
+                                .font(.custom("DeenOD", size: geo.size.height / 35.0))
+                                .frame(width: sizeClass == .compact ? geo.size.height / 3.0 : geo.size.height / 2.5)
+                                .offset(y: sizeClass == .compact ? -2 : -4)
                         }
-                        .frame(width: sizeClass == .compact ? 85 : 120)
+                        .frame(width: sizeClass == .compact ? 120 : 200)
                         Spacer()
-                            .frame(width: geo.size.width / 5.5)
+                            .frame(width: geo.size.width / 4.8)
                         Button(action: {
                             rootIsActive = false
                         }) {
                             ExitButton()
                         }
-                        .offset(x: 12)
                         Spacer()
                             .frame(width: geo.size.width / 10.0)
                     }

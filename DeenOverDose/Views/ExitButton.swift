@@ -15,7 +15,7 @@ struct ExitButton: View {
         Image("exitButton")
             .resizable()
             .aspectRatio(contentMode: .fill)
-            .frame(width: sizeClass == .compact ? 27 : 40, height: sizeClass == .compact ? 27 : 40)
+            .frame(width: sizeClass == .compact ? 32 : 40, height: sizeClass == .compact ? 32 : 40)
     }
 }
 
