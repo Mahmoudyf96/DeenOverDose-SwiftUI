@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Al Fihri.png",
+      "filename" : "InActiveFihri.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Al Fihri@2x.png",
+      "filename" : "InActiveFihri@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Al Fihri@3x.png",
+      "filename" : "InActiveFihri@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

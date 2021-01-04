@@ -13,8 +13,8 @@ struct ForwardButton: View {
     var body: some View {
         Image("forwardButton")
             .resizable()
-            .aspectRatio(contentMode: .fill)
-            .frame(width: sizeClass == .compact ? 32 : 40, height: sizeClass == .compact ? 32 : 40)
+            .aspectRatio(contentMode: .fit)
+            .frame(width: sizeClass == .compact ? 40 : 70, height: sizeClass == .compact ? 40 : 70)
     }
 }
 

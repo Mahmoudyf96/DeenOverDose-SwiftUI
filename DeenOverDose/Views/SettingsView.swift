@@ -103,16 +103,16 @@ struct SettingsView: View {
                             .frame(width: sizeClass == .compact ? 130 : 200)
                             .offset(y: sizeClass == .compact ? -2 : -4)
                         Spacer()
-                            .frame(width: geo.size.width / 4.8)
+                            .frame(width: geo.size.width / 6.8)
                         Button(action: {
                             rootIsActive = false
                         }) {
                             ExitButton()
                         }
                         Spacer()
-                            .frame(width: geo.size.width / 10.0)
+                            .frame(width: geo.size.width / 8.0)
                     }
-                    .padding(.top, geo.size.height / 18.0)
+                    .padding(.top, geo.size.height / 30.0)
                     HStack {
                         Toggles(geoHeight: geo.size.height, toggleText: "Music", toggleType: $musicToggle)
                         Toggles(geoHeight: geo.size.height, toggleText: "Sound", toggleType: $soundToggle)

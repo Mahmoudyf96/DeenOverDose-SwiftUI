@@ -70,7 +70,7 @@ struct StatsView: View {
                         Spacer()
                             .frame(width: geo.size.width / 10.0)
                     }
-                    .padding(.top, sizeClass == .compact ? geo.size.height / 10.0 : geo.size.height / 40.0)
+                    .padding(.top, sizeClass == .compact ? geo.size.height / 15.0 : geo.size.height / 40.0)
                     Image("RadarChart")
                         .resizable()
                         .scaledToFit()
