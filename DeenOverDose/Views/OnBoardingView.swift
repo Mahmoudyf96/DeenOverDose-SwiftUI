@@ -20,7 +20,9 @@ struct OnBoardingPages {
 
 struct OnBoardingView: View {
     
-    @State var rootIsActive: Bool = false
+    @State var logInIsActive: Bool = false
+    @State var signUpIsActive: Bool = false
+    
     @Binding var isOBShowing: Bool
     @Environment(\.horizontalSizeClass) var sizeClass
     
@@ -63,7 +65,7 @@ struct OnBoardingView: View {
                         }
                         .tabViewStyle(PageTabViewStyle( ))
                         .frame(height: geo.size.height / 4.0)
-                        NavigationLink(destination: SignUpView(isOBShowing: $isOBShowing)) {
+                        NavigationLink(destination: SignUpView(isOBShowing: $isOBShowing, rootIsActive: $signUpIsActive), isActive: $signUpIsActive) {
                             ZStack {
                                 Image("mediumButton")
                                     .resizable()
@@ -96,7 +98,7 @@ struct OnBoardingView: View {
                                 .font(.custom("PressStart2P-Regular", size: geo.size.height / 65.0))
                                 .foregroundColor(.white)
                         }
-                        NavigationLink(destination: LogInView(isOBShowing: $isOBShowing, rootIsActive: $rootIsActive), isActive: $rootIsActive) {
+                        NavigationLink(destination: LogInView(isOBShowing: $isOBShowing, rootIsActive: $logInIsActive), isActive: $logInIsActive) {
                             Text("LOG IN")
                                 .font(.custom("PressStart2P-Regular", size: geo.size.height / 65.0))
                                 .foregroundColor(.white)
