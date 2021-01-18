@@ -14,7 +14,7 @@ struct BackButton: View {
         Image("backButton")
             .resizable()
             .aspectRatio(contentMode: .fit)
-            .frame(width: sizeClass == .compact ? 40 : 70, height: sizeClass == .compact ? 40 : 70)
+            .frame(width: sizeClass == .compact ? 30 : 70, height: sizeClass == .compact ? 30 : 70)
     }
 }
 

@@ -43,34 +43,34 @@ struct StatsView: View {
     @Binding var rootIsActive: Bool
     
     @State var totalMatches: Int = 54
-    @State var winLossRatio: Double = 0.34
-    @State var totalQuestions: Int = 648
-    @State var rightWrongRatio: Double = 1.44
+    @State var totalQuestions: Int
+    @State var winLossRatio: Double
+    @State var rightWrongRatio: Double
     
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                GreenBackground()
+                Background()
                 VStack {
                     HStack {
                         Spacer()
-                            .frame(width: geo.size.width / 2.8)
+                            .frame(width: geo.size.width / 10.0)
+                        Button(action: {
+                            rootIsActive = false
+                        }) {
+                            BackButton()
+                        }
+                        Spacer()
+                            .frame(width: sizeClass == .compact ? geo.size.width / 6.2 : geo.size.width / 4.9)
                         Text("Stats")
                             .font(.custom("DeenOD", size: geo.size.height / 15.0))
                             .frame(width: sizeClass == .compact ? geo.size.height / 3.0 : geo.size.height / 2.5)
                             .frame(width: sizeClass == .compact ? 130 : 200)
                             .offset(y: sizeClass == .compact ? -3 : -4)
                         Spacer()
-                            .frame(width: sizeClass == .compact ? geo.size.width / 6.2 : geo.size.width / 4.9)
-                        Button(action: {
-                            rootIsActive = false
-                        }) {
-                            ExitButton()
-                        }
-                        Spacer()
-                            .frame(width: geo.size.width / 10.0)
+                            .frame(width: geo.size.width / 2.8)
                     }
-                    .padding(.top, sizeClass == .compact ? geo.size.height / 15.0 : geo.size.height / 40.0)
+                    .padding(.top, sizeClass == .compact ? geo.size.height / 25.0 : geo.size.height / 40.0)
                     Image("RadarChart")
                         .resizable()
                         .scaledToFit()
@@ -86,8 +86,8 @@ struct StatsView: View {
                             StatsButton(geoWidth: geo.size.width, geoHeight: geo.size.height, title: "Right / Wrong Ratio", scores: String(rightWrongRatio))
                         }
                     }
-                    .padding(.top)
                     Spacer()
+                        .frame(height: sizeClass == .compact ? geo.size.width / 40.0 : geo.size.width / 25.0)
                     HomeButton(geoWidth: geo.size.width, geoHeight: geo.size.height, buttonText: "Reset Stats")
                         .padding(.top, 20)
                     Spacer()
@@ -106,7 +106,12 @@ struct StatsView: View {
 struct StatsView_Previews: PreviewProvider {
     @State static var isActive: Bool = false
     
+    @State static var answered = 648
+    
+    @State static var winLossRatio = 0.34
+    @State static var rightWrongRatio = 1.44
+    
     static var previews: some View {
-        StatsView(rootIsActive: $isActive)
+        StatsView(rootIsActive: $isActive, totalQuestions: answered, winLossRatio: winLossRatio, rightWrongRatio: rightWrongRatio)
     }
 }

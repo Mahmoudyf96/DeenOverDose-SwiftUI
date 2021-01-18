@@ -50,16 +50,25 @@ struct QuizView: View {
     @State var set: String = "trivia-endless"
     
     @State var timeRemaining = 15
+    @State var introTime = 3
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    let loadingTimer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                GreenBackground()
+                Background()
                 if gameOver {
-                    ResultView(timeRemaining: $timeRemaining, gameOver: $gameOver, shouldPopToRootView: $rootIsActive, correctAnswer: $correctAnswer, wrongAnswer: $wrongAnswer, correctAnswerOne: $correctAnswerOne, correctAnswerTwo: $correctAnswerTwo, correctAnswerThree: $correctAnswerThree, answerOneActive: $answerOneActive, answerTwoActive: $answerTwoActive, answerThreeActive: $answerThreeActive, score: $score, bestScore: $bestScore)
+                    ResultView(introTime: $introTime, timeRemaining: $timeRemaining, gameOver: $gameOver, shouldPopToRootView: $rootIsActive, correctAnswer: $correctAnswer, wrongAnswer: $wrongAnswer, correctAnswerOne: $correctAnswerOne, correctAnswerTwo: $correctAnswerTwo, correctAnswerThree: $correctAnswerThree, answerOneActive: $answerOneActive, answerTwoActive: $answerTwoActive, answerThreeActive: $answerThreeActive, score: $score, bestScore: $bestScore)
+                } else if introTime > 0 {
+                    Text("\(introTime)")
+                        .kerning(-1)
+                        .font(.custom("PressStart2P-Regular", size: geo.size.height / 12.0))
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.center)
+                        .onReceive(timer) { _ in
+                            self.introTime -= 1
+                        }
                 } else if data.questions.isEmpty {
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle(tint: Color.white))
@@ -70,15 +79,14 @@ struct QuizView: View {
                             Spacer()
                                 .frame(width: geo.size.width / 2.8)
                             ZStack {
-                                HStack {
-                                    Text(":")
-                                        .kerning(-geo.size.height / 55.0)
-                                        .font(.custom("PressStart2P-Regular", size: geo.size.height / 28.0))
-                                        .foregroundColor(.white)
-                                        .multilineTextAlignment(.center)
+                                ZStack {
+                                    Image("TimeKeeper")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: sizeClass == .compact ? geo.size.height / 12.0 : geo.size.height / 14.0)
                                     Text("\(timeRemaining - 3)")
                                         .kerning(-1)
-                                        .font(.custom("PressStart2P-Regular", size: geo.size.height / 28.0))
+                                        .font(.custom("DeenOD", size: geo.size.height / 24.0))
                                         .foregroundColor(.white)
                                         .multilineTextAlignment(.center)
                                         .onReceive(timer) { _ in
@@ -132,37 +140,17 @@ struct QuizView: View {
                                                 }
                                             }
                                         }
+                                        .offset(y: sizeClass == .compact ? -geo.size.height / 165.0 : -geo.size.height / 185.0)
                                 }
                                 .opacity(correctAnswer ? 0.0 : (wrongAnswer ? 0.0 : (timesUp ? 0.0 : 1.0)))
-                                .offset(y: 5)
-                                ZStack {
-                                    Circle()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(width: sizeClass == .compact ? 55 : 80, height: sizeClass == .compact ? 25 : 40)
-                                        .foregroundColor(correctAnswer ? .correctColour : .incorrectColour)
-                                        .offset(x: sizeClass == .compact ? 7 : 20)
-                                        .opacity(timesUp && !wrongAnswer && correctAnswer ? 0.0 : (correctAnswer ? 0.8 : (wrongAnswer ? 0.8 : 0)))
-                                    Image(correctAnswer ? "Correct" : "Wrong")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(width: 20, height: 20)
-                                        .foregroundColor(.white)
-                                        .offset(x: sizeClass == .compact ? 7 : 20)
-                                        .opacity(timesUp && !wrongAnswer && correctAnswer ? 0.0 : (correctAnswer ? 1.0 : (wrongAnswer ? 1.0 : 0)))
-                                }
-                                .offset(y: 5)
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 35.0, style: .continuous)
-                                        .frame(width: sizeClass == .compact ? 180 : 360, height: sizeClass == .compact ? 45 : 90)
-                                        .foregroundColor(.timesUpColour)
-                                    Text("TIME'S UP")
-                                        .kerning(-1)
-                                        .font(.custom("Bungee-Inline", size: geo.size.height / 30.0))
-                                        .foregroundColor(.white)
-                                        .multilineTextAlignment(.center)
-                                }
-                                .opacity(timesUp ? 1.0 : 0.0)
-                                .offset(y: 5)
+                                Image(correctAnswer ? "Correct" : "Wrong")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: sizeClass == .compact ? geo.size.height / 12.0 : geo.size.height / 14.0)
+                                    .opacity(timesUp && !wrongAnswer && correctAnswer ? 0.0 : (correctAnswer ? 1.0 : (wrongAnswer ? 1.0 : 0)))
+                                Image("TimesUp")
+                                    .frame(width: sizeClass == .compact ? 180 : 360, height: sizeClass == .compact ? 45 : 90)
+                                    .opacity(timesUp ? 1.0 : 0.0)
                             }
                             .frame(width: sizeClass == .compact ? 85 : 120)
                             Spacer()
@@ -180,7 +168,7 @@ struct QuizView: View {
                         Spacer()
                             .frame(height: geo.size.height / 70.0)
                         Text(data.questions[quizPosition].question)
-                            .font(.custom("Bungee-Regular", size: geo.size.height / 38.0))
+                            .font(.custom("Bungee-Regular", size: geo.size.height / 35.0))
                             .multilineTextAlignment(.center)
                             .foregroundColor(.white)
                             .frame(width: geo.size.width / 1.15, height: geo.size.height / 3)
@@ -195,15 +183,15 @@ struct QuizView: View {
                                 timeRemaining = 4
                             }) {
                                 ZStack (alignment: Alignment(horizontal: .leading, vertical: .center)) {
-                                    Image(correctAnswerOne && answerOneActive ? "correctQuizButton" : (wrongAnswer && answerOneActive ? "wrongQuizButton" : "quizButton"))
+                                    Image(correctAnswerOne && answerOneActive ? "correctMBButton" : (wrongAnswer && answerOneActive ? "wrongMBButton" : "mBButton"))
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: geo.size.width / 1.15)
                                     Text(data.questions[quizPosition].answers[0])
-                                        .font(.custom("PressStart2P-Regular", size: geo.size.height / 45.0))
+                                        .font(.custom("Bungee-Regular" , size: geo.size.height / 35.0))
                                         .foregroundColor(.quizAnswersColour)
+                                        .frame(width: geo.size.width / 1.15)
                                         .multilineTextAlignment(.center)
-                                        .offset(x: geo.size.width / 15.0)
                                 }
                             }
                             .padding(.bottom, 20.0)
@@ -216,15 +204,15 @@ struct QuizView: View {
                                 timeRemaining = 4
                             }) {
                                 ZStack (alignment: Alignment(horizontal: .leading, vertical: .center)) {
-                                    Image(correctAnswerTwo && answerTwoActive ? "correctQuizButton" : (wrongAnswer && answerTwoActive ? "wrongQuizButton" : "quizButton"))
+                                    Image(correctAnswerTwo && answerTwoActive ? "correctMBButton" : (wrongAnswer && answerTwoActive ? "wrongMBButton" : "mBButton"))
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: geo.size.width / 1.15)
                                     Text(data.questions[quizPosition].answers[1])
-                                        .font(.custom("PressStart2P-Regular", size: geo.size.height / 45.0))
+                                        .font(.custom("Bungee-Regular" , size: geo.size.height / 35.0))
                                         .foregroundColor(.quizAnswersColour)
+                                        .frame(width: geo.size.width / 1.15)
                                         .multilineTextAlignment(.center)
-                                        .offset(x: geo.size.width / 15.0)
                                 }
                             }
                             .padding(.bottom, 20.0)
@@ -237,15 +225,15 @@ struct QuizView: View {
                                 timeRemaining = 4
                             }) {
                                 ZStack (alignment: Alignment(horizontal: .leading, vertical: .center)) {
-                                    Image(correctAnswerThree && answerThreeActive ? "correctQuizButton" : (wrongAnswer && answerThreeActive ? "wrongQuizButton" : "quizButton"))
+                                    Image(correctAnswerThree && answerThreeActive ? "correctMBButton" : (wrongAnswer && answerThreeActive ? "wrongMBButton" : "mBButton"))
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: geo.size.width / 1.15)
                                     Text(data.questions[quizPosition].answers[2])
-                                        .font(.custom("PressStart2P-Regular", size: geo.size.height / 45.0))
+                                        .font(.custom("Bungee-Regular" , size: geo.size.height / 35.0))
                                         .foregroundColor(.quizAnswersColour)
+                                        .frame(width: geo.size.width / 1.15)
                                         .multilineTextAlignment(.center)
-                                        .offset(x: geo.size.width / 15.0)
                                 }
                             }
                             .disabled(answerOneActive || answerTwoActive || answerThreeActive || timesUp)

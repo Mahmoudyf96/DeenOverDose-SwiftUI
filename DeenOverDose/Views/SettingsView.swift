@@ -41,7 +41,7 @@ struct HomeButton: View {
     
     var body: some View {
         ZStack {
-            Image("homeButton")
+            Image("mediumButton")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: sizeClass == .compact ? geoWidth / 1.3 : geoWidth / 1.5)
@@ -63,10 +63,10 @@ struct SettingsButton: View {
     
     var body: some View {
         ZStack {
-            Image("settingsButton")
+            Image("smallButton")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: sizeClass == .compact ? geoWidth / 4.2 : geoWidth / 4.8)
+                .frame(width: sizeClass == .compact ? geoWidth / 3.8 : geoWidth / 4.8)
             VStack {
                 Image(buttonImage)
                     .resizable()
@@ -92,27 +92,27 @@ struct SettingsView: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                GreenBackground()
+                Background()
                 VStack {
                     HStack {
                         Spacer()
-                            .frame(width: geo.size.width / 2.8)
+                            .frame(width: geo.size.width / 8.0)
+                        Button(action: {
+                            rootIsActive = false
+                        }) {
+                            BackButton()
+                        }
+                        Spacer()
+                            .frame(width: geo.size.width / 6.8)
                         Text("Settings")
                             .font(.custom("DeenOD", size: geo.size.height / 20.0))
                             .frame(width: sizeClass == .compact ? geo.size.height / 3.0 : geo.size.height / 2.5)
                             .frame(width: sizeClass == .compact ? 130 : 200)
                             .offset(y: sizeClass == .compact ? -2 : -4)
                         Spacer()
-                            .frame(width: geo.size.width / 6.8)
-                        Button(action: {
-                            rootIsActive = false
-                        }) {
-                            ExitButton()
-                        }
-                        Spacer()
-                            .frame(width: geo.size.width / 8.0)
+                            .frame(width: geo.size.width / 2.8)
                     }
-                    .padding(.top, geo.size.height / 30.0)
+                    .padding(.top, sizeClass == .compact ? geo.size.height / 25.0 : geo.size.height / 40.0)
                     HStack {
                         Toggles(geoHeight: geo.size.height, toggleText: "Music", toggleType: $musicToggle)
                         Toggles(geoHeight: geo.size.height, toggleText: "Sound", toggleType: $soundToggle)

@@ -8,9 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var isOnBoardingShowing = true
     
     var body : some View {
-        MainMenuView()
+        Group {
+            if isOnBoardingShowing {
+                OnBoardingView(isOBShowing: $isOnBoardingShowing)
+            } else {
+                MainMenuView()
+            }
+        }
     }
 }
 

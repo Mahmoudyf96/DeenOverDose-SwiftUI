@@ -48,6 +48,7 @@ struct ResultView: View {
     
     @Environment(\.horizontalSizeClass) var sizeClass
 
+    @Binding var introTime: Int
     @Binding var timeRemaining: Int
     @Binding var gameOver: Bool
     @Binding var shouldPopToRootView: Bool
@@ -74,6 +75,7 @@ struct ResultView: View {
                 singlePlayerScoreBoard(score: score, bestScore: bestScore, geoHeight: geo.size.height)
                 VStack {
                     Button(action: {
+                        introTime = 3
                         timeRemaining = 15
                         correctAnswer = false
                         wrongAnswer = false
@@ -88,14 +90,30 @@ struct ResultView: View {
                         gameOver = false
                         score = 0
                     }) {
-                        AnswerButton(answerText: "", imageText: "playAgain", geoWidth: geo.size.width, geoHeight: geo.size.height)
+                        ZStack {
+                            Image("mBButton")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: geo.size.width / 1.15)
+                            Text("Play Again")
+                                .font(.custom("DeenOD" , size: geo.size.height / 28.0))
+                                .offset(y: -2)
+                        }
                     }
                     .buttonStyle(PlainButtonStyle())
                     .padding(.bottom, 10)
                     Button(action: {
                         self.shouldPopToRootView = false
                     }) {
-                        AnswerButton(answerText: "", imageText: "mainMenuText", geoWidth: geo.size.width, geoHeight: geo.size.height)
+                        ZStack {
+                            Image("mBButton")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: geo.size.width / 1.15)
+                            Text("Main Menu")
+                                .font(.custom("DeenOD" , size: geo.size.height / 28.0))
+                                .offset(y: -2)
+                        }
                     }
                     .buttonStyle(PlainButtonStyle())
                 }

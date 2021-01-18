@@ -16,12 +16,13 @@ struct HeroButton: View {
     @Binding var Active: Bool
     
     var body: some View {
-            Image(Active ? "Active"+Hero : "InActive"+Hero)
+            Image(Hero+"Button")
                 .resizable()
                 .scaledToFit()
                 .frame(width: sizeClass == .compact ? geoWidth / 2.5 : geoWidth / 3.3)
                 .padding(.horizontal, 5)
                 .padding(.top, 5)
+                .opacity(Active ? 1 : 0.6)
     }
 }
 
@@ -30,40 +31,42 @@ struct HeroesView: View {
     
     @Binding var rootIsActive: Bool
     
+    @State var starterHero: Bool
+    
     @State var firstHeroActive: Bool = true
     @State var secondHeroActive: Bool = false
     @State var thirdHeroActive: Bool = false
     @State var fourthHeroActive: Bool = false
     
     @State var selectedHero: Int = 0
-    @State var HeroesPageOne = ["Fihri", "Musa", "Nusaybah", "Ertugrul"]
-    @State var HeroesDescriptionPageOne = ["Fihri":"Founder of the world’s\nOldest university", "Musa":"the world’s wealthiest\nPerson of all time", "Nusaybah":"Defender of the prophet\nIn the battle of uhud", "Ertugrul":"Founder of the ottoman\nCaliphate"]
-    @State var HeroesNamesPageOne = ["Fihri":"Fatima Al-Fihri", "Musa":"Mansa Musa", "Nusaybah":"Nusaybah bint ka’ab", "Ertugrul":"Ertuğrul Ghazi"]
+    @State var HeroesPageOne = ["Fihri", "MansaMusa", "Nusaybah", "Ertugrul"]
+    @State var HeroesDescriptionPageOne = ["Fihri":"Founder of the world’s\nOldest university", "MansaMusa":"the world’s wealthiest\nPerson of all time", "Nusaybah":"Defender of the prophet\nIn the battle of uhud", "Ertugrul":"Founder of the ottoman\nCaliphate"]
+    @State var HeroesNamesPageOne = ["Fihri":"Fatima Al-Fihri", "MansaMusa":"Mansa Musa", "Nusaybah":"Nusaybah bint ka’ab", "Ertugrul":"Ertuğrul Ghazi"]
     
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                GreenBackground()
+                Background()
                 VStack {
                     HStack {
                         Spacer()
-                            .frame(width: geo.size.width / 2.8)
-                        Text("Heroes")
+                            .frame(width: geo.size.width / 10.0)
+                        Button(action: {
+                            rootIsActive = false
+                        }) {
+                            BackButton()
+                        }
+                        Spacer()
+                            .frame(width: sizeClass == .compact ? geo.size.width / 6.2 : geo.size.width / 4.9)
+                        Text(starterHero ? "Choose your starter hero" : "Heroes")
                             .font(.custom("DeenOD", size: geo.size.height / 15.0))
                             .frame(width: sizeClass == .compact ? geo.size.height / 3.0 : geo.size.height / 2.5)
                             .frame(width: sizeClass == .compact ? 130 : 200)
                             .offset(y: sizeClass == .compact ? -3 : -4)
                         Spacer()
-                            .frame(width: sizeClass == .compact ? geo.size.width / 6.2 : geo.size.width / 4.9)
-                        Button(action: {
-                            rootIsActive = false
-                        }) {
-                            ExitButton()
-                        }
-                        Spacer()
-                            .frame(width: geo.size.width / 10.0)
+                            .frame(width: geo.size.width / 2.8)
                     }
-                    .padding(.top, sizeClass == .compact ? geo.size.height / 25.0 : geo.size.height / 40.0)
+                    .padding(.top, sizeClass == .compact ? geo.size.height / 30.0 : geo.size.height / 40.0)
                     ZStack {
                         Image("HeroRibbon")
                             .resizable()
@@ -91,7 +94,8 @@ struct HeroesView: View {
                             Image(HeroesPageOne[selectedHero])
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: geo.size.width / 2.3)
+                                .frame(width: geo.size.width / 2.1)
+                                .padding(.bottom)
                             ForwardButton()
                                 .onTapGesture {
                                     if selectedHero == 3 {
@@ -115,7 +119,7 @@ struct HeroesView: View {
                                 .onTapGesture {
                                     HeroActive(0)
                                 }
-                            HeroButton(geoWidth: geo.size.width, Hero: "Musa", Active: $secondHeroActive)
+                            HeroButton(geoWidth: geo.size.width, Hero: "MansaMusa", Active: $secondHeroActive)
                                 .onTapGesture {
                                     HeroActive(1)
                                 }
@@ -130,11 +134,12 @@ struct HeroesView: View {
                                     HeroActive(3)
                                 }
                         }
-                        HomeButton(geoWidth: geo.size.width, geoHeight: geo.size.height, buttonText: "Select Hero")
-                            .padding(.top, sizeClass == .compact ? 5 : 30)
-                        Spacer()
-                            .frame(height: sizeClass == .compact ? geo.size.width / 25.0 : geo.size.width / 15.0)
                     }
+                    .offset(y: -25)
+                    HomeButton(geoWidth: geo.size.width, geoHeight: geo.size.height, buttonText: "Select Hero")
+                        .padding(.top, sizeClass == .compact ? 5 : 30)
+                    Spacer()
+                        .frame(height: sizeClass == .compact ? geo.size.height / 35.0 : geo.size.height / 15.0)
                 }
             }
             .edgesIgnoringSafeArea(.all)
@@ -176,8 +181,9 @@ struct HeroesView: View {
 
 struct HeroesView_Previews: PreviewProvider {
     @State static var isActive: Bool = false
+    @State static var starterHero: Bool = false
     
     static var previews: some View {
-        HeroesView(rootIsActive: $isActive)
+        HeroesView(rootIsActive: $isActive, starterHero: starterHero)
     }
 }

@@ -21,7 +21,7 @@ struct ModeButton: View {
     
     var body: some View {
         ZStack {
-            Image("modeButton")
+            Image("bulkyButton")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: sizeClass == .compact ? geoWidth / 1.3 : geoWidth / 1.4)
@@ -55,12 +55,11 @@ struct ChooseModeView: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                GreenBackground()
+                Background()
                 VStack {
                     HStack {
                         Spacer()
-                            .frame(width: geo.size.width / 10)
-                        
+                            .frame(width: geo.size.width / 10.0)
                         Button(action: {
                             rootIsActive = false
                         }) {
@@ -86,7 +85,6 @@ struct ChooseModeView: View {
                     NavigationLink(destination: QuizView(rootIsActive: $rootIsActive, correct: $correct, wrong: $wrong, answered: $answered,  bestScore: $bestScore, set: "trivia-endless")) {
                         ModeButton(geoWidth: geo.size.width, geoHeight: geo.size.height, title: "Trials", ribbon: "trialsRibbon", right: true)
                     }
-                    
                     ModeButton(geoWidth: geo.size.width, geoHeight: geo.size.height, title: "Live", ribbon: "liveRibbon", right: false)
                     Spacer()
                 }

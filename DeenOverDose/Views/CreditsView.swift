@@ -19,13 +19,13 @@ struct CreditSocials: View {
     @State var title: String
     
     var body: some View {
-        Group {
+        VStack {
             ZStack {
                 Rectangle()
                     .foregroundColor(.white)
                     .frame(width: geoWidth, height: geoHeight / 25.0)
                 Text(title)
-                    .font(.custom("Bungee-Inline", size: geoHeight / 35.0))
+                    .font(.custom("Bungee-Inline", size: geoHeight / 45.0))
             }
             .padding(.top)
             VStack (alignment: .leading) {
@@ -36,7 +36,7 @@ struct CreditSocials: View {
                         .frame(height: geoHeight / 30.0)
                         .padding(.horizontal, 5)
                     Text(twitterAt)
-                        .font(.custom("Bungee", size: geoHeight / 35.0))
+                        .font(.custom("Bungee", size: geoHeight / 40.0))
                         .foregroundColor(.white)
                 }
                 .padding(.top, 5)
@@ -47,7 +47,7 @@ struct CreditSocials: View {
                         .frame(height: geoHeight / 30.0)
                         .padding(.horizontal, 5)
                     Text(instaAt)
-                        .font(.custom("Bungee", size: geoHeight / 35.0))
+                        .font(.custom("Bungee", size: geoHeight / 40.0))
                         .foregroundColor(.white)
                 }
                 .padding(.top, 1)
@@ -63,29 +63,30 @@ struct CreditsView: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                GreenBackground()
+                Background()
                 VStack {
                     HStack {
                         Spacer()
-                            .frame(width: geo.size.width / 10.0)
-                        Button(action: {
-                            self.presentationMode.wrappedValue.dismiss()
-                        }) {
-                            BackButton()
-                        }
-                        Spacer()
-                            .frame(width: sizeClass == .compact ? geo.size.width / 5.5 : geo.size.width / 5.5)
+                            .frame(width: geo.size.width / 2.8)
                         Text("Credits")
                             .font(.custom("DeenOD", size: geo.size.height / 20.0))
                             .frame(width: sizeClass == .compact ? geo.size.height / 1.5 : geo.size.height / 2.5)
                             .frame(width: sizeClass == .compact ? 130 : 200)
                             .offset(y: sizeClass == .compact ? -2 : -4)
                         Spacer()
-                            .frame(width: geo.size.width / 2.8)
+                            .frame(width: sizeClass == .compact ? geo.size.width / 5.5 : geo.size.width / 5.5)
+                        Button(action: {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }) {
+                            ExitButton()
+                        }
+                        Spacer()
+                            .frame(width: geo.size.width / 10.0)
                     }
-                    .padding(.top, geo.size.height / 18.0)
-                    CreditSocials(geoWidth: geo.size.width, geoHeight: geo.size.height, twitterAt: "@Mahmoudyow", instaAt: "@Mahmou.d.yf", title: "Designer & Developer")
-                    CreditSocials(geoWidth: geo.size.width, geoHeight: geo.size.height, twitterAt: "@JHellyGar", instaAt: "@Just.HellyGar", title: "Pixel Art")
+                    .padding(.top, sizeClass == .compact ? geo.size.height / 10.0 : geo.size.height / 40.0)
+                    CreditSocials(geoWidth: geo.size.width, geoHeight: geo.size.height, twitterAt: "@JHellyGar", instaAt: "@Just.HellyGar", title: "Designer & Pixel Artist")
+                    CreditSocials(geoWidth: geo.size.width, geoHeight: geo.size.height, twitterAt: "@Mahmoudyow", instaAt: "@Mahmou.d.yf", title: "Developer")
+                    Spacer()
                 }
             }
             .edgesIgnoringSafeArea(.all)

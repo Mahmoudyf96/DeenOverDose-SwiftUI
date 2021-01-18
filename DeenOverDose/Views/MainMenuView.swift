@@ -20,7 +20,10 @@ struct MainMenuView: View {
     //Analytics
     @State var correct = 0
     @State var wrong = 0
-    @State var answered = 0
+    @State var answered = 648
+    
+    @State var winLossRatio = 0.34
+    @State var rightWrongRatio = 1.44
 
     var body: some View {
         NavigationView {
@@ -36,10 +39,8 @@ struct MainMenuView: View {
                         Image("DeenOD - HomeLogo")
                         HStack {
                             VStack {
-                                Image("Username")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: sizeClass == .compact ? geo.size.width / 3.4 : geo.size.width / 4.0)
+                                Text("DeenOD")
+                                    .font(.custom("DeenOD", size: geo.size.height / 35.0))
                                     .offset(y: 15)
                                 ZStack {
                                     Image("homeCharacterButton")
@@ -47,26 +48,24 @@ struct MainMenuView: View {
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: sizeClass == .compact ? geo.size.width / 2.35 : geo.size.width / 3.0)
                                     HStack {
-                                        Image("Al Fihri-Half")
+                                        Image("FihriHalf")
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
-                                            .frame(width: sizeClass == .compact ? geo.size.width / 6.3 : geo.size.width / 8.3)
-                                            .offset(x: sizeClass == .compact ? -geo.size.width / 500 : geo.size.width / 500)
+                                            .frame(height: sizeClass == .compact ? geo.size.height / 5.0  : geo.size.height / 4.5)
+                                            .offset(x: sizeClass == .compact ? geo.size.width / 27.0 : geo.size.width / 150.0, y: sizeClass == .compact ? -geo.size.height / 75.0 : -geo.size.height / 75.0)
                                         Image("PrestigeThree")
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
                                             .frame(width: sizeClass == .compact ? geo.size.width / 4.65 : geo.size.width / 5.3)
-                                            .offset(x: -geo.size.width / 50)
+                                            .offset(x: sizeClass == .compact ? -geo.size.width / 27.0 : -geo.size.width / 75.0)
                                     }
                                     .offset(y: 5)
                                 }
                                 .offset(y: 2)
                             }
                             VStack {
-                                Image("Level")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: sizeClass == .compact ? geo.size.width / 5.0 : geo.size.width / 6.5)
+                                Text("Level 3")
+                                    .font(.custom("DeenOD", size: geo.size.height / 35.0))
                                     .offset(y: 20)
                                 ZStack {
                                     Image("homeStatButton")
@@ -74,19 +73,13 @@ struct MainMenuView: View {
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: sizeClass == .compact ? geo.size.width / 2.35 : geo.size.width / 3.0)
                                         .offset(y: 10)
-                                    VStack {
-                                        Image("winLossText")
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .frame(width: sizeClass == .compact ? geo.size.width / 6.3 : geo.size.width / 8.0)
-                                            .offset(x: sizeClass == .compact ? -geo.size.width / 13 : -geo.size.width / 15)
-                                            .padding(.top)
-                                        Image("rightWrongText")
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .frame(width: sizeClass == .compact ? geo.size.width / 6.3 : geo.size.width / 8.0)
-                                            .offset(x: sizeClass == .compact ? -geo.size.width / 13 : -geo.size.width / 15)
+                                    VStack (alignment: .leading) {
+                                        Text("W/L: \(winLossRatio, specifier: "%.2f")")
+                                            .font(.custom("DeenOD", size: geo.size.height / 35.0))
+                                        Text("R/W: \(rightWrongRatio, specifier: "%.2f")")
+                                            .font(.custom("DeenOD", size: geo.size.height / 35.0))
                                     }
+                                    .offset(y: geo.size.height / 100.0)
                                 }
                                 ZStack {
                                     Image("homeStatButton")
@@ -97,10 +90,8 @@ struct MainMenuView: View {
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: sizeClass == .compact ? geo.size.width / 3.5 : geo.size.width / 4.5)
-                                    Image("TrophyPos")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: sizeClass == .compact ? geo.size.width / 6.0 : geo.size.width / 7.5)
+                                    Text("344K")
+                                        .font(.custom("DeenOD", size: geo.size.height / 40.0))
                                         .offset(x:  sizeClass == .compact ? geo.size.width / 18.0 : geo.size.width / 23.0)
                                 }
                             }
@@ -109,24 +100,28 @@ struct MainMenuView: View {
                         VStack {
                             NavigationLink(destination: ChooseModeView(rootIsActive: $modeIsActive, bestScore: $bestScore, correct: $correct, wrong: $wrong, answered: $answered), isActive: $modeIsActive) {
                                 ZStack {
-                                    Image("homeButton")
+                                    Image("mediumButton")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: sizeClass == .compact ? geo.size.width / 1.1 : geo.size.width / 1.2)
-                                    Image("startingJourney")
+                                    Text("Start Your Journey")
+                                        .font(.custom("DeenOD", size: geo.size.height / 32.0))
+                                        .offset(y: -geo.size.height / 200.0)
                                 }
                             }
                             .isDetailLink(false)
                             .navigationBarTitle("")
                             .navigationBarHidden(true)
                             .buttonStyle(PlainButtonStyle())
-                            NavigationLink(destination: HeroesView(rootIsActive: $heroesIsActive), isActive: $heroesIsActive) {
+                            NavigationLink(destination: HeroesView(rootIsActive: $heroesIsActive, starterHero: false), isActive: $heroesIsActive) {
                                 ZStack {
-                                    Image("homeButton")
+                                    Image("mediumButton")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: sizeClass == .compact ? geo.size.width / 1.1 : geo.size.width / 1.2)
-                                    Image("heroesTitle")
+                                    Text("Heroes")
+                                        .font(.custom("DeenOD", size: geo.size.height / 32.0))
+                                        .offset(y: -geo.size.height / 200.0)
                                 }
                                 .padding(.top, 10)
                             }
@@ -134,13 +129,15 @@ struct MainMenuView: View {
                             .navigationBarTitle("")
                             .navigationBarHidden(true)
                             .buttonStyle(PlainButtonStyle())
-                            NavigationLink(destination: StatsView(rootIsActive: $statsIsActive), isActive: $statsIsActive) {
+                            NavigationLink(destination: StatsView(rootIsActive: $statsIsActive, totalQuestions: answered, winLossRatio: winLossRatio, rightWrongRatio: rightWrongRatio), isActive: $statsIsActive) {
                                 ZStack {
-                                    Image("homeButton")
+                                    Image("mediumButton")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: sizeClass == .compact ? geo.size.width / 1.1 : geo.size.width / 1.2)
-                                    Image("statsTitle")
+                                    Text("Stats")
+                                        .font(.custom("DeenOD", size: geo.size.height / 32.0))
+                                        .offset(y: -geo.size.height / 200.0)
                                     
                                 }
                                 .padding(.top, 10)
@@ -151,11 +148,13 @@ struct MainMenuView: View {
                             .buttonStyle(PlainButtonStyle())
                             NavigationLink(destination: SettingsView(rootIsActive: $settingsIsActive), isActive: $settingsIsActive) {
                                 ZStack {
-                                    Image("homeButton")
+                                    Image("mediumButton")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: sizeClass == .compact ? geo.size.width / 1.1 : geo.size.width / 1.2)
-                                    Image("settingsTitle")
+                                    Text("Settings")
+                                        .font(.custom("DeenOD", size: geo.size.height / 32.0))
+                                        .offset(y: -geo.size.height / 200.0)
                                 }
                                 .padding(.top, 10)
                             }
