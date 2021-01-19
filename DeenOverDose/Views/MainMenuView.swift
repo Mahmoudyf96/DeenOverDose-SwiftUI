@@ -113,7 +113,7 @@ struct MainMenuView: View {
                             .navigationBarTitle("")
                             .navigationBarHidden(true)
                             .buttonStyle(PlainButtonStyle())
-                            NavigationLink(destination: HeroesView(rootIsActive: $heroesIsActive, starterHero: false), isActive: $heroesIsActive) {
+                            NavigationLink(destination: HeroesView(), isActive: $heroesIsActive) {
                                 ZStack {
                                     Image("mediumButton")
                                         .resizable()

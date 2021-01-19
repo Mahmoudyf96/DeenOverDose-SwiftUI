@@ -11,6 +11,7 @@ target 'DeenOverDose' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Firestore'
   pod 'Firebase/Auth'
+  pod 'GoogleSignIn'
   pod 'FirebaseFirestoreSwift'
 
   # https://firebase.google.com/docs/ios/setup#available-pods

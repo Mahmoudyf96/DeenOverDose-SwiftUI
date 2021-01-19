@@ -71,7 +71,8 @@ struct ResultView: View {
         GeometryReader { geo in
             VStack (alignment: .center) {
                 Spacer()
-                Image("gameOver")
+                Text("Game Over")
+                    .font(.custom("DeenOD" , size: geo.size.height / 20.0))
                 singlePlayerScoreBoard(score: score, bestScore: bestScore, geoHeight: geo.size.height)
                 VStack {
                     Button(action: {

@@ -249,7 +249,7 @@ struct QuizView: View {
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
         .onAppear(perform: {
-            data.getQuestions(set: set)
+            data.getQuestions()
         })
     }
     

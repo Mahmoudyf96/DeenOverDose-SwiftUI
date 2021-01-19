@@ -6,22 +6,26 @@
 //
 
 import Combine
-import Firebase
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class QuestionViewModel: ObservableObject {
     
     @Published var questions: [Question] = []
     let db = Firestore.firestore()
     
-    func getQuestions(set: String) {
+    func getQuestions() {
         
-        db.collection(set).getDocuments { (snap, error) in
+        db.collection("trivia-endless").getDocuments { (querySnapshot, error) in
             
-            guard let data = snap else { return }
+            guard let documents = querySnapshot?.documents else {
+                print("No Documents!")
+                return
+            }
             
-            self.questions = data.documents.compactMap({ (doc) -> Question? in
-                return try? doc.data(as: Question.self)
-            })
+            self.questions = documents.compactMap { queryDocumentSnapshot -> Question? in
+                return try? queryDocumentSnapshot.data(as: Question.self)
+            }
             
             self.questions = self.questions.shuffled()
         }

@@ -1,13 +1,13 @@
 //
-//  HeroesView.swift
+//  StarterHeroesView.swift
 //  DeenOverDose
 //
-//  Created by McMoodie on 2020-12-28.
+//  Created by McMoodie on 2021-01-17.
 //
 
 import SwiftUI
 
-struct HeroButton: View {
+struct StarterHeroButton: View {
     @Environment(\.horizontalSizeClass) var sizeClass
     
     @State var geoWidth: CGFloat
@@ -26,20 +26,20 @@ struct HeroButton: View {
     }
 }
 
-struct Hero {
+struct StarterHero {
     @State var name: String
     @State var fullName: String
     @State var description: String
 }
 
-let Heroes = [
+let StarterHeroes = [
     Hero(name: "Fihri", fullName: "Fatima Al-Fihri", description: "Founder of the world’s\nOldest university"),
     Hero(name: "MansaMusa", fullName: "Mansa Musa", description: "The World’s Wealthiest\nPerson of all time"),
     Hero(name: "Nusaybah", fullName: "Nusaybah bint ka’ab", description: "Defender of the prophet\nIn the battle of uhud"),
     Hero(name: "Ertugrul", fullName: "Ertuğrul Ghazi", description: "Founder of the ottoman\nCaliphate")
 ]
 
-struct HeroesView: View {
+struct StarterHeroesView: View {
     @Environment(\.horizontalSizeClass) var sizeClass
     @Environment(\.presentationMode) var presentationMode
     
@@ -49,37 +49,24 @@ struct HeroesView: View {
     @State var fourthHeroActive: Bool = false
     
     @State var selectedHero: Int = 0
+    @Binding var isOBShowing: Bool
     
     var body: some View {
         GeometryReader { geo in
             ZStack {
                 Background()
                 VStack {
-                    HStack {
-                        Spacer()
-                            .frame(width: geo.size.width / 10.0)
-                        Button(action: {
-                            self.presentationMode.wrappedValue.dismiss()
-                        }) {
-                            BackButton()
-                        }
-                        Spacer()
-                            .frame(width: sizeClass == .compact ? geo.size.width / 6.2 : geo.size.width / 4.9)
-                        Text("Heroes")
-                            .font(.custom("DeenOD", size: geo.size.height / 15.0))
-                            .frame(width: sizeClass == .compact ? geo.size.height / 3.0 : geo.size.height / 2.5)
-                            .frame(width: sizeClass == .compact ? 130 : 200)
-                            .offset(y: sizeClass == .compact ? -3 : -4)
-                        Spacer()
-                            .frame(width: geo.size.width / 2.8)
-                    }
-                    .padding(.top, sizeClass == .compact ? geo.size.height / 30.0 : geo.size.height / 40.0)
+                    Text("Choose your starter hero")
+                        .font(.custom("DeenOD", size: geo.size.height / 23.0))
+                        .multilineTextAlignment(.center)
+                        .frame(width: sizeClass == .compact ? geo.size.height / 3.0 : geo.size.height / 2.5)
+                        .padding(.top, sizeClass == .compact ? geo.size.height / 30.0 : geo.size.height / 40.0)
                     ZStack {
                         Image("HeroRibbon")
                             .resizable()
                             .scaledToFit()
                             .frame(width: geo.size.width / 1.05)
-                        Text(Heroes[selectedHero].fullName)
+                        Text(StarterHeroes[selectedHero].fullName)
                             .font(.custom("Bungee-Inline", size: geo.size.height / 35.0))
                             .foregroundColor(.white)
                             .offset(y: sizeClass == .compact ? -geo.size.height / 47.0 : -geo.size.height / 36.0)
@@ -98,7 +85,7 @@ struct HeroesView: View {
                                         HeroActive(2)
                                     }
                                 }
-                            Image(Heroes[selectedHero].name)
+                            Image(StarterHeroes[selectedHero].name)
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: geo.size.width / 2.1)
@@ -116,35 +103,39 @@ struct HeroesView: View {
                                     }
                                 }
                         }
-                        Text(Heroes[selectedHero].description)
+                        Text(StarterHeroes[selectedHero].description)
                             .font(.custom("Bungee-Inline", size: geo.size.height / 35.0))
                             .multilineTextAlignment(.center)
                             .foregroundColor(.white)
                             .padding(.bottom, sizeClass == .compact ? 5 : 30)
                         HStack {
-                            HeroButton(geoWidth: geo.size.width, Hero: "Fihri", Active: $firstHeroActive)
+                            StarterHeroButton(geoWidth: geo.size.width, Hero: "Fihri", Active: $firstHeroActive)
                                 .onTapGesture {
                                     HeroActive(0)
                                 }
-                            HeroButton(geoWidth: geo.size.width, Hero: "MansaMusa", Active: $secondHeroActive)
+                            StarterHeroButton(geoWidth: geo.size.width, Hero: "MansaMusa", Active: $secondHeroActive)
                                 .onTapGesture {
                                     HeroActive(1)
                                 }
                         }
                         HStack {
-                            HeroButton(geoWidth: geo.size.width, Hero: "Nusaybah", Active: $thirdHeroActive)
+                            StarterHeroButton(geoWidth: geo.size.width, Hero: "Nusaybah", Active: $thirdHeroActive)
                                 .onTapGesture {
                                     HeroActive(2)
                                 }
-                            HeroButton(geoWidth: geo.size.width, Hero: "Ertugrul", Active: $fourthHeroActive)
+                            StarterHeroButton(geoWidth: geo.size.width, Hero: "Ertugrul", Active: $fourthHeroActive)
                                 .onTapGesture {
                                     HeroActive(3)
                                 }
                         }
                     }
                     .offset(y: -25)
-                    HomeButton(geoWidth: geo.size.width, geoHeight: geo.size.height, buttonText: "Select Hero")
-                        .padding(.top, sizeClass == .compact ? 5 : 30)
+                    Button(action : {
+                        dismiss()
+                    }) {
+                        HomeButton(geoWidth: geo.size.width, geoHeight: geo.size.height, buttonText: "Select Hero")
+                            .padding(.top, sizeClass == .compact ? 5 : 30)
+                    }
                     Spacer()
                         .frame(height: sizeClass == .compact ? geo.size.height / 35.0 : geo.size.height / 15.0)
                 }
@@ -176,7 +167,7 @@ struct HeroesView: View {
             secondHeroActive = false
             thirdHeroActive = true
             fourthHeroActive = false
-        } else if hero == 3{
+        } else if hero == 3 {
             selectedHero = 3
             firstHeroActive = false
             secondHeroActive = false
@@ -184,13 +175,17 @@ struct HeroesView: View {
             fourthHeroActive = true
         }
     }
+    
+    func dismiss() {
+        withAnimation {
+            isOBShowing.toggle()
+        }
+    }
 }
 
-struct HeroesView_Previews: PreviewProvider {
-    
-    @State static var starterHero: Bool = true
+struct StarterHeroesView_Previews: PreviewProvider {
     
     static var previews: some View {
-        HeroesView()
+        StarterHeroesView(isOBShowing: Binding.constant(true))
     }
 }

@@ -3,13 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		8DDD19531E9750B7863B906C /* Pods_DeenOverDose.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19EDE544B2252DF5813F45F5 /* Pods_DeenOverDose.framework */; };
 		C2124E3A2594ABBD0032CECA /* ChooseModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2124E392594ABBD0032CECA /* ChooseModeView.swift */; };
 		C217CC2E25850A7100D65396 /* QuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C217CC2D25850A7100D65396 /* QuestionViewModel.swift */; };
+		C227380625B66BB100C6E275 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C227380525B66BB100C6E275 /* UserViewModel.swift */; };
+		C227380A25B66C5700C6E275 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C227380925B66C5700C6E275 /* User.swift */; };
+		C227384625B6B4B800C6E275 /* FontAwesomeSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = C227384525B6B4B800C6E275 /* FontAwesomeSwiftUI */; };
 		C237439E257EEB3C001C5244 /* Bungee-Inline.otf in Resources */ = {isa = PBXBuildFile; fileRef = C237439D257EEB3C001C5244 /* Bungee-Inline.otf */; };
 		C23743A1257EEB49001C5244 /* Bungee-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C23743A0257EEB49001C5244 /* Bungee-Regular.otf */; };
 		C23743A4257EEC59001C5244 /* PressStart2P-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C23743A3257EEC59001C5244 /* PressStart2P-Regular.ttf */; };
@@ -37,12 +40,16 @@
 		C2DDED0625B3809A00E22222 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DDED0525B3809A00E22222 /* LogInView.swift */; };
 		C2DDED0925B380B700E22222 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DDED0825B380B700E22222 /* SignUpView.swift */; };
 		C2DDED0C25B5082000E22222 /* ForgetPassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DDED0B25B5081F00E22222 /* ForgetPassView.swift */; };
+		C2DDED1025B542A900E22222 /* StarterHeroesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DDED0F25B542A900E22222 /* StarterHeroesView.swift */; };
+		C2ED82F425B5B744006C404D /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ED82F325B5B744006C404D /* SessionStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		19EDE544B2252DF5813F45F5 /* Pods_DeenOverDose.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DeenOverDose.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2124E392594ABBD0032CECA /* ChooseModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseModeView.swift; sourceTree = "<group>"; };
 		C217CC2D25850A7100D65396 /* QuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewModel.swift; sourceTree = "<group>"; };
+		C227380525B66BB100C6E275 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		C227380925B66C5700C6E275 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C237439D257EEB3C001C5244 /* Bungee-Inline.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bungee-Inline.otf"; sourceTree = "<group>"; };
 		C23743A0257EEB49001C5244 /* Bungee-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bungee-Regular.otf"; sourceTree = "<group>"; };
 		C23743A3257EEC59001C5244 /* PressStart2P-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PressStart2P-Regular.ttf"; sourceTree = "<group>"; };
@@ -57,7 +64,7 @@
 		C2392BA52560F0B700A93493 /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		C2392BA82560F0C200A93493 /* deenodquestions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deenodquestions.json; sourceTree = "<group>"; };
 		C26D343C2584502800E2D9F6 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
-		C26D34402584508100E2D9F6 /* ExitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitButton.swift; sourceTree = "<group>"; };
+		C26D34402584508100E2D9F6 /* ExitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExitButton.swift; path = "../New Group/ExitButton.swift"; sourceTree = "<group>"; };
 		C26D34472584517A00E2D9F6 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		C26D34552584F3FB00E2D9F6 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		C26D345A2584FD3E00E2D9F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -70,8 +77,10 @@
 		C2C46EE225A2083000A9DFC7 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		C2C46EE625A2086400A9DFC7 /* ForwardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForwardButton.swift; sourceTree = "<group>"; };
 		C2DDED0525B3809A00E22222 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
-		C2DDED0825B380B700E22222 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		C2DDED0825B380B700E22222 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignUpView.swift; path = "../LogIn SignUp/SignUpView.swift"; sourceTree = "<group>"; };
 		C2DDED0B25B5081F00E22222 /* ForgetPassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPassView.swift; sourceTree = "<group>"; };
+		C2DDED0F25B542A900E22222 /* StarterHeroesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarterHeroesView.swift; sourceTree = "<group>"; };
+		C2ED82F325B5B744006C404D /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
 		EC9BEA3C193C07AAFBAE895A /* Pods-DeenOverDose.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeenOverDose.debug.xcconfig"; path = "Target Support Files/Pods-DeenOverDose/Pods-DeenOverDose.debug.xcconfig"; sourceTree = "<group>"; };
 		F5DACAF32F5B4C850ACD489E /* Pods-DeenOverDose.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeenOverDose.release.xcconfig"; path = "Target Support Files/Pods-DeenOverDose/Pods-DeenOverDose.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,6 +91,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DDD19531E9750B7863B906C /* Pods_DeenOverDose.framework in Frameworks */,
+				C227384625B6B4B800C6E275 /* FontAwesomeSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,7 +118,9 @@
 		C217CC2C25850A5A00D65396 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				C227380525B66BB100C6E275 /* UserViewModel.swift */,
 				C217CC2D25850A7100D65396 /* QuestionViewModel.swift */,
+				C2ED82F325B5B744006C404D /* SessionStore.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -179,15 +191,9 @@
 		C26D344D258481D600E2D9F6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C26D34402584508100E2D9F6 /* ExitButton.swift */,
-				C2C46EE225A2083000A9DFC7 /* BackButton.swift */,
-				C2C46EE625A2086400A9DFC7 /* ForwardButton.swift */,
+				C2ED82D825B5B29E006C404D /* Components */,
+				C2ED82D925B5B2E1006C404D /* LogIn&SignUp */,
 				C2392B8C2560F03D00A93493 /* ContentView.swift */,
-				C26D34472584517A00E2D9F6 /* Background.swift */,
-				C2A96C6125AD7153003D324A /* OnBoardingView.swift */,
-				C2DDED0525B3809A00E22222 /* LogInView.swift */,
-				C2DDED0B25B5081F00E22222 /* ForgetPassView.swift */,
-				C2DDED0825B380B700E22222 /* SignUpView.swift */,
 				C26D34552584F3FB00E2D9F6 /* MainMenuView.swift */,
 				C2124E392594ABBD0032CECA /* ChooseModeView.swift */,
 				C2392BA22560F0AB00A93493 /* QuizView.swift */,
@@ -204,8 +210,32 @@
 			isa = PBXGroup;
 			children = (
 				C2392BA52560F0B700A93493 /* Question.swift */,
+				C227380925B66C5700C6E275 /* User.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		C2ED82D825B5B29E006C404D /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C26D34472584517A00E2D9F6 /* Background.swift */,
+				C26D34402584508100E2D9F6 /* ExitButton.swift */,
+				C2C46EE225A2083000A9DFC7 /* BackButton.swift */,
+				C2C46EE625A2086400A9DFC7 /* ForwardButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		C2ED82D925B5B2E1006C404D /* LogIn&SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				C2A96C6125AD7153003D324A /* OnBoardingView.swift */,
+				C2DDED0525B3809A00E22222 /* LogInView.swift */,
+				C2DDED0B25B5081F00E22222 /* ForgetPassView.swift */,
+				C2DDED0825B380B700E22222 /* SignUpView.swift */,
+				C2DDED0F25B542A900E22222 /* StarterHeroesView.swift */,
+			);
+			path = "LogIn&SignUp";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,12 +250,16 @@
 				C2392B842560F03D00A93493 /* Frameworks */,
 				C2392B852560F03D00A93493 /* Resources */,
 				C740149A8CC06914F164E4CE /* [CP] Embed Pods Frameworks */,
+				E0B23F5F32F00C24E1956578 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = DeenOverDose;
+			packageProductDependencies = (
+				C227384525B6B4B800C6E275 /* FontAwesomeSwiftUI */,
+			);
 			productName = DeenOverDose;
 			productReference = C2392B872560F03D00A93493 /* DeenOverDose.app */;
 			productType = "com.apple.product-type.application";
@@ -253,6 +287,9 @@
 				Base,
 			);
 			mainGroup = C2392B7E2560F03D00A93493;
+			packageReferences = (
+				C227384425B6B4B800C6E275 /* XCRemoteSwiftPackageReference "FontAwesomeSwiftUI" */,
+			);
 			productRefGroup = C2392B882560F03D00A93493 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -320,6 +357,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DeenOverDose/Pods-DeenOverDose-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E0B23F5F32F00C24E1956578 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DeenOverDose/Pods-DeenOverDose-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DeenOverDose/Pods-DeenOverDose-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DeenOverDose/Pods-DeenOverDose-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -327,7 +381,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2ED82F425B5B744006C404D /* SessionStore.swift in Sources */,
+				C227380625B66BB100C6E275 /* UserViewModel.swift in Sources */,
 				C26D343D2584502800E2D9F6 /* ResultView.swift in Sources */,
+				C227380A25B66C5700C6E275 /* User.swift in Sources */,
 				C26D34412584508100E2D9F6 /* ExitButton.swift in Sources */,
 				C2C3D21D259A463E00442087 /* HeroesView.swift in Sources */,
 				C2A96C6225AD7153003D324A /* OnBoardingView.swift in Sources */,
@@ -339,6 +396,7 @@
 				C2C46EE325A2083000A9DFC7 /* BackButton.swift in Sources */,
 				C26D34562584F3FB00E2D9F6 /* MainMenuView.swift in Sources */,
 				C2DDED0625B3809A00E22222 /* LogInView.swift in Sources */,
+				C2DDED1025B542A900E22222 /* StarterHeroesView.swift in Sources */,
 				C2392B8B2560F03D00A93493 /* DeenOverDoseApp.swift in Sources */,
 				C26D34482584517A00E2D9F6 /* Background.swift in Sources */,
 				C2124E3A2594ABBD0032CECA /* ChooseModeView.swift in Sources */,
@@ -538,6 +596,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C227384425B6B4B800C6E275 /* XCRemoteSwiftPackageReference "FontAwesomeSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onmyway133/FontAwesomeSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C227384525B6B4B800C6E275 /* FontAwesomeSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C227384425B6B4B800C6E275 /* XCRemoteSwiftPackageReference "FontAwesomeSwiftUI" */;
+			productName = FontAwesomeSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C2392B7F2560F03D00A93493 /* Project object */;
 }

@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import GoogleSignIn
+import Firebase
+import FontAwesomeSwiftUI
 
 let slides = [
     OnBoardingPages(title: "Welcome", message: "Sign Up for 100% free priceless knowledge offered by deen over dunyah."),
@@ -21,7 +24,6 @@ struct OnBoardingPages {
 struct OnBoardingView: View {
     
     @State var logInIsActive: Bool = false
-    @State var signUpIsActive: Bool = false
     
     @Binding var isOBShowing: Bool
     @Environment(\.horizontalSizeClass) var sizeClass
@@ -65,7 +67,7 @@ struct OnBoardingView: View {
                         }
                         .tabViewStyle(PageTabViewStyle( ))
                         .frame(height: geo.size.height / 4.0)
-                        NavigationLink(destination: SignUpView(isOBShowing: $isOBShowing, rootIsActive: $signUpIsActive), isActive: $signUpIsActive) {
+                        NavigationLink(destination: SignUpView(isOBShowing: $isOBShowing)) {
                             ZStack {
                                 Image("mediumButton")
                                     .resizable()
@@ -80,14 +82,27 @@ struct OnBoardingView: View {
                         .navigationBarTitle("")
                         .navigationBarHidden(true)
                         .buttonStyle(PlainButtonStyle())
-                        ZStack {
-                            Image("blackMButton")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: sizeClass == .compact ? geo.size.width / 1.12 : geo.size.width / 1.2)
-                            Text("CONTINUE WITH GOOGLE")
-                                .font(.custom("PressStart2P-Regular", size: geo.size.height / 65.0))
-                                .foregroundColor(.white)
+                        Button(action: {
+                            GIDSignIn.sharedInstance().presentingViewController = UIApplication.shared.windows.last?.rootViewController
+                            GIDSignIn.sharedInstance().signIn()
+                            if Auth.auth().currentUser != nil {
+                                dismiss()
+                            }
+                        }) {
+                            ZStack {
+                                Image("blackMButton")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: sizeClass == .compact ? geo.size.width / 1.12 : geo.size.width / 1.2)
+                                HStack {
+                                    Text(AwesomeIcon.google.rawValue)
+                                        .font(.awesome(style: .brand, size: 30))
+                                        .foregroundColor(.white)
+                                    Text("CONTINUE WITH GOOGLE")
+                                        .font(.custom("PressStart2P-Regular", size: geo.size.height / 65.0))
+                                        .foregroundColor(.white)
+                                }
+                            }
                         }
                         ZStack {
                             Image("blackMButton")
