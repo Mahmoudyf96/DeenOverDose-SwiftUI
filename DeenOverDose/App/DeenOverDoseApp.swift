@@ -8,6 +8,7 @@
 import SwiftUI
 import Firebase
 import GoogleSignIn
+import FontAwesomeSwiftUI
 
 @main
 struct DeenOverDoseApp: App {
@@ -27,15 +28,15 @@ class AppDelegate: NSObject, UIApplicationDelegate, GIDSignInDelegate {
         
         //Use Firebase Library to configure APIs
         FirebaseApp.configure()
+        FontAwesome.register()
         
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         return true
     }
     
-    @available(iOS 9.0, *)
-    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-      return GIDSignIn.sharedInstance().handle(url)
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url)
     }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
@@ -44,17 +45,21 @@ class AppDelegate: NSObject, UIApplicationDelegate, GIDSignInDelegate {
         print(error.localizedDescription)
         return
       }
-
-      guard let authentication = user.authentication else { return }
-      let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        let credential = GoogleAuthProvider.credential(withIDToken: user.authentication.idToken, accessToken: user.authentication.accessToken)
+        
         Auth.auth().signIn(with: credential) { (result, error) in
+            
             if error != nil {
                 print((error?.localizedDescription)!)
                 return
             }
+            
             let currentUser = User(uid: (result?.user.uid)!, email: result?.user.email, username: result?.user.displayName)
             UserViewModel().saveUser(currentUser)
-            print("user=" + (result?.user.email)!)
+            
+            NotificationCenter.default.post(name: NSNotification.Name("SIGNIN"), object: nil)
+            
+            print((result?.user.email)!)
         }
     }
 

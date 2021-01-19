@@ -9,6 +9,7 @@ import SwiftUI
 import GoogleSignIn
 import Firebase
 import FontAwesomeSwiftUI
+import AuthenticationServices
 
 let slides = [
     OnBoardingPages(title: "Welcome", message: "Sign Up for 100% free priceless knowledge offered by deen over dunyah."),
@@ -27,8 +28,12 @@ struct OnBoardingView: View {
     
     @Binding var isOBShowing: Bool
     @Environment(\.horizontalSizeClass) var sizeClass
+    @Environment(\.presentationMode) var presentationMode
     
     @State private var selection = 0
+    
+    @State var user = Auth.auth().currentUser
+    @State var appleAuth = SignInWithApple()
     
     var body: some View {
         NavigationView {
@@ -83,10 +88,16 @@ struct OnBoardingView: View {
                         .navigationBarHidden(true)
                         .buttonStyle(PlainButtonStyle())
                         Button(action: {
-                            GIDSignIn.sharedInstance().presentingViewController = UIApplication.shared.windows.last?.rootViewController
-                            GIDSignIn.sharedInstance().signIn()
-                            if Auth.auth().currentUser != nil {
+                            if (user?.email)! != "" {
+                                print((user?.email)!)
                                 dismiss()
+                            } else {
+                                GIDSignIn.sharedInstance()?.presentingViewController = UIApplication.shared.windows.first?.rootViewController
+                                GIDSignIn.sharedInstance()?.signIn()
+                                if (user?.email)! != "" {
+                                    print((user?.email)!)
+                                    dismiss()
+                                }
                             }
                         }) {
                             ZStack {
@@ -94,24 +105,48 @@ struct OnBoardingView: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width: sizeClass == .compact ? geo.size.width / 1.12 : geo.size.width / 1.2)
-                                HStack {
+                                HStack (spacing: 10) {
                                     Text(AwesomeIcon.google.rawValue)
-                                        .font(.awesome(style: .brand, size: 30))
+                                        .font(.awesome(style: .brand, size: geo.size.height / 33.0))
                                         .foregroundColor(.white)
+                                        .padding(.vertical, 5)
                                     Text("CONTINUE WITH GOOGLE")
                                         .font(.custom("PressStart2P-Regular", size: geo.size.height / 65.0))
                                         .foregroundColor(.white)
+                                        .padding(.top, 2)
+                                        .padding(.horizontal, 5)
                                 }
                             }
                         }
-                        ZStack {
-                            Image("blackMButton")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: sizeClass == .compact ? geo.size.width / 1.12 : geo.size.width / 1.2)
-                            Text("CONTINUE WITH APPLE")
-                                .font(.custom("PressStart2P-Regular", size: geo.size.height / 65.0))
-                                .foregroundColor(.white)
+                        Button(action: {
+                            if (user?.email)! != "" {
+                                print((user?.email)!)
+                                dismiss()
+                            } else {
+                                appleAuth.startSignInWithAppleFlow()
+                                if (user?.email)! != "" {
+                                    print((user?.email)!)
+                                    dismiss()
+                                }
+                            }
+                        }) {
+                            ZStack {
+                                Image("blackMButton")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: sizeClass == .compact ? geo.size.width / 1.12 : geo.size.width / 1.2)
+                                HStack (spacing: 10) {
+                                    Text(AwesomeIcon.apple.rawValue)
+                                        .font(.awesome(style: .brand, size: geo.size.height / 28.0))
+                                        .foregroundColor(.white)
+                                        .padding(.bottom, 2)
+                                    Text("CONTINUE WITH APPLE")
+                                        .font(.custom("PressStart2P-Regular", size: geo.size.height / 65.0))
+                                        .foregroundColor(.white)
+                                        .padding(.top, 2)
+                                        .padding(.horizontal, 5)
+                                }
+                            }
                         }
                         NavigationLink(destination: LogInView(isOBShowing: $isOBShowing, rootIsActive: $logInIsActive), isActive: $logInIsActive) {
                             Text("LOG IN")
@@ -132,6 +167,11 @@ struct OnBoardingView: View {
             .navigationBarHidden(true)
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .onAppear {
+            NotificationCenter.default.addObserver(forName: NSNotification.Name("SIGNIN"), object: nil, queue: .main) { (_) in
+                self.user = Auth.auth().currentUser
+            }
+        }
     }
     
     func dismiss() {

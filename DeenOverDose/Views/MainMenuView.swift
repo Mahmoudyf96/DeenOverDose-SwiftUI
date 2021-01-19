@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Firebase
+import GoogleSignIn
 
 struct MainMenuView: View {
     @Environment(\.horizontalSizeClass) var sizeClass
@@ -175,6 +177,11 @@ struct MainMenuView: View {
             .navigationBarHidden(true)
         }
         .navigationViewStyle(StackNavigationViewStyle())
+    }
+    
+    func logOut() {
+        GIDSignIn.sharedInstance()?.signOut()
+        try! Auth.auth().signOut()
     }
 }
 

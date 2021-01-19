@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8DDD19531E9750B7863B906C /* Pods_DeenOverDose.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19EDE544B2252DF5813F45F5 /* Pods_DeenOverDose.framework */; };
 		C2124E3A2594ABBD0032CECA /* ChooseModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2124E392594ABBD0032CECA /* ChooseModeView.swift */; };
 		C217CC2E25850A7100D65396 /* QuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C217CC2D25850A7100D65396 /* QuestionViewModel.swift */; };
 		C227380625B66BB100C6E275 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C227380525B66BB100C6E275 /* UserViewModel.swift */; };
 		C227380A25B66C5700C6E275 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C227380925B66C5700C6E275 /* User.swift */; };
 		C227384625B6B4B800C6E275 /* FontAwesomeSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = C227384525B6B4B800C6E275 /* FontAwesomeSwiftUI */; };
+		C227385025B6E65500C6E275 /* SignInWithApple.swift in Sources */ = {isa = PBXBuildFile; fileRef = C227384F25B6E65500C6E275 /* SignInWithApple.swift */; };
+		C227385225B6F53600C6E275 /* Pods_DeenOverDose.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19EDE544B2252DF5813F45F5 /* Pods_DeenOverDose.framework */; };
+		C227385325B6F53600C6E275 /* Pods_DeenOverDose.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 19EDE544B2252DF5813F45F5 /* Pods_DeenOverDose.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C237439E257EEB3C001C5244 /* Bungee-Inline.otf in Resources */ = {isa = PBXBuildFile; fileRef = C237439D257EEB3C001C5244 /* Bungee-Inline.otf */; };
 		C23743A1257EEB49001C5244 /* Bungee-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = C23743A0257EEB49001C5244 /* Bungee-Regular.otf */; };
 		C23743A4257EEC59001C5244 /* PressStart2P-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C23743A3257EEC59001C5244 /* PressStart2P-Regular.ttf */; };
@@ -44,12 +46,28 @@
 		C2ED82F425B5B744006C404D /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ED82F325B5B744006C404D /* SessionStore.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C227385425B6F53600C6E275 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C227385325B6F53600C6E275 /* Pods_DeenOverDose.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		19EDE544B2252DF5813F45F5 /* Pods_DeenOverDose.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DeenOverDose.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2124E392594ABBD0032CECA /* ChooseModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseModeView.swift; sourceTree = "<group>"; };
 		C217CC2D25850A7100D65396 /* QuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewModel.swift; sourceTree = "<group>"; };
 		C227380525B66BB100C6E275 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		C227380925B66C5700C6E275 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C227384825B6D2E700C6E275 /* DeenOverDose.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DeenOverDose.entitlements; sourceTree = "<group>"; };
+		C227384F25B6E65500C6E275 /* SignInWithApple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithApple.swift; sourceTree = "<group>"; };
 		C237439D257EEB3C001C5244 /* Bungee-Inline.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bungee-Inline.otf"; sourceTree = "<group>"; };
 		C23743A0257EEB49001C5244 /* Bungee-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bungee-Regular.otf"; sourceTree = "<group>"; };
 		C23743A3257EEC59001C5244 /* PressStart2P-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PressStart2P-Regular.ttf"; sourceTree = "<group>"; };
@@ -90,8 +108,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DDD19531E9750B7863B906C /* Pods_DeenOverDose.framework in Frameworks */,
 				C227384625B6B4B800C6E275 /* FontAwesomeSwiftUI in Frameworks */,
+				C227385225B6F53600C6E275 /* Pods_DeenOverDose.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +151,14 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		C227384A25B6D45600C6E275 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C227384F25B6E65500C6E275 /* SignInWithApple.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		C237439C257EEAFF001C5244 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,10 +191,12 @@
 		C2392B892560F03D00A93493 /* DeenOverDose */ = {
 			isa = PBXGroup;
 			children = (
+				C227384825B6D2E700C6E275 /* DeenOverDose.entitlements */,
 				C217CCDB2589357700D65396 /* App */,
 				C217CC2C25850A5A00D65396 /* ViewModel */,
 				C26D344D258481D600E2D9F6 /* Views */,
 				C26D344E2584820500E2D9F6 /* Models */,
+				C227384A25B6D45600C6E275 /* Services */,
 				C2392B8E2560F04000A93493 /* Assets.xcassets */,
 				C2392B982560F04000A93493 /* Info.plist */,
 				C26D345A2584FD3E00E2D9F6 /* GoogleService-Info.plist */,
@@ -251,6 +279,7 @@
 				C2392B852560F03D00A93493 /* Resources */,
 				C740149A8CC06914F164E4CE /* [CP] Embed Pods Frameworks */,
 				E0B23F5F32F00C24E1956578 /* [CP] Copy Pods Resources */,
+				C227385425B6F53600C6E275 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -391,6 +420,7 @@
 				C2DDED0C25B5082000E22222 /* ForgetPassView.swift in Sources */,
 				C2C46EE725A2086400A9DFC7 /* ForwardButton.swift in Sources */,
 				C2392BA02560F07B00A93493 /* Bundle-Decodable.swift in Sources */,
+				C227385025B6E65500C6E275 /* SignInWithApple.swift in Sources */,
 				C2392B8D2560F03D00A93493 /* ContentView.swift in Sources */,
 				C2C46EDE25A1F32800A9DFC7 /* CreditsView.swift in Sources */,
 				C2C46EE325A2083000A9DFC7 /* BackButton.swift in Sources */,
@@ -534,6 +564,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DeenOverDose/DeenOverDose.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DeenOverDose/Preview Content\"";
 				DEVELOPMENT_TEAM = 4LVL647LQT;
@@ -557,6 +588,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DeenOverDose/DeenOverDose.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"DeenOverDose/Preview Content\"";
 				DEVELOPMENT_TEAM = 4LVL647LQT;
